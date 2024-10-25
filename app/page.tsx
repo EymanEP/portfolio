@@ -7,7 +7,7 @@ export default function Home() {
                 <img src="/under-construction.png" className="w-full h-full object-cover"
                      alt="illustration of people working" />
             </div>
-            <h1 className="text-3xl font-bold text-slate-700">This site is under construction</h1>
+            <h1 className="text-3xl font-bold text-slate-700 text-center">This site is under construction</h1>
             <p className="text-slate-500">This site will be available soon.</p>
         </div>
     );
