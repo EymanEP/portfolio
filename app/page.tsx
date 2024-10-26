@@ -2,13 +2,19 @@ import React from "react";
 
 export default function Home() {
     return (
-        <div className="flex flex-col justify-center items-center h-dvh w-dvw">
-            <div className="w-3/5 self-center">
-                <img src="/under-construction.png" className="w-full h-full object-cover"
-                     alt="illustration of people working" />
-            </div>
-            <h1 className="text-3xl font-bold text-slate-700 text-center">This site is under construction</h1>
-            <p className="text-slate-500">This site will be available soon.</p>
+        <div>
+            <section id="home" className="h-screen bg-black text-white flex items-center justify-center">
+                <h2 className="text-3xl">Home Section</h2>
+            </section>
+            <section id="about" className="h-screen bg-black text-white flex items-center justify-center">
+                <h2 className="text-3xl">About Section</h2>
+            </section>
+            <section id="projects" className="h-screen bg-black text-white flex items-center justify-center">
+                <h2 className="text-3xl">Projects Section</h2>
+            </section>
+            <section id="contact" className="h-screen bg-black text-white flex items-center justify-center">
+                <h2 className="text-3xl">Contact Section</h2>
+            </section>
         </div>
     );
 }
