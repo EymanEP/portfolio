@@ -1,7 +1,8 @@
 import type { Metadata } from "next";
 import localFont from "next/font/local";
 import "./globals.css";
-import Navbar from "@/app/components/navbar";
+import Navbar from "@/components/organisms/Navbar";
+import GrowingCircleAnimation from "@/components/animations/GrowingCircleAnimation";
 
 const jetBrainsMono = localFont({
     src: "./fonts/JetBrainsMono.ttf",
@@ -24,6 +25,7 @@ export default function RootLayout({
       <body
         className={`${jetBrainsMono.variable} antialiased flex flex-col justify-between min-h-dvh`}
       >
+      <GrowingCircleAnimation />
       <Navbar />
       <main className={`flex-1`}>
         {children}
