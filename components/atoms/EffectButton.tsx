@@ -6,6 +6,20 @@ import {AnimatePresence, motion} from "framer-motion";
 import React from "react";
 import {twMerge} from "tailwind-merge";
 
+const useIsMobile = () => {
+    const [isMobile, setIsMobile] = React.useState(false);
+
+    React.useEffect(() => {
+        const handleResize = () =>
+            setIsMobile(window.innerWidth < 768);
+
+        window.addEventListener("resize", handleResize);
+        handleResize();
+
+        return () => window.removeEventListener("resize", handleResize);
+    })
+    return isMobile;
+}
 
 type ButtonProps = {
     effectDirection?: "top" | "bottom" | "left" | "right";
@@ -15,19 +29,27 @@ type ButtonProps = {
     children: React.ReactNode;
     className?: string;
     bgDivClassName?: string;
+    disabled?: boolean;
+    onClickMethod?: () => void;
 }
 
-const EffectButton: React.FC<ButtonProps> = ({
-                                                 effectDirection = 'bottom',
-                                                 cta,
-                                                 children,
-                                                 size = "medium",
-                                                 color = "contrast",
-                                                 className,
-                                                 bgDivClassName
-                                             }) => {
+const EffectButton: React.FC<ButtonProps> = (
+    {
+        effectDirection = 'bottom',
+        cta,
+        children,
+        size = "medium",
+        color = "contrast",
+        className,
+        bgDivClassName,
+        disabled = false,
+        onClickMethod
+    }
+) => {
     const router = useRouter();
     const [isHover, setIsHover] = React.useState(false);
+    const [playEffect, setPlayEffect] = React.useState(false);
+    const isMobile = useIsMobile();
 
     const sizeStyles = {
         small: "px-2 py-1 text-sm", medium: "px-4 py-2 text-base", large: "px-6 py-3 text-lg", xl: "px-8 py-4 text-xl",
@@ -75,14 +97,21 @@ const EffectButton: React.FC<ButtonProps> = ({
     }
 
     const handleClick = () => {
+        setPlayEffect(true);
+
         if (cta) {
             setTimeout(() => {
                 router.push(cta);
             }, 200)
         }
+
+        if (onClickMethod) onClickMethod();
+
+        setTimeout(() => setPlayEffect(false), 300);
     }
 
     return (<motion.button
+        disabled={disabled}
         className={buttonClasses}
         onClick={handleClick}
         onMouseEnter={() => setIsHover(true)}
@@ -92,11 +121,14 @@ const EffectButton: React.FC<ButtonProps> = ({
     >
         <div className="relative z-20">{children}</div>
         <AnimatePresence>
-            {isHover && (<motion.div className={bgDivClasses}
-                                     variants={effectVariants}
-                                     initial="hidden"
-                                     animate="visible"
-            />)}
+            {isHover || (isMobile && playEffect) ? (
+                <motion.div className={bgDivClasses}
+                            variants={effectVariants}
+                            initial="hidden"
+                            animate="visible"
+                            exit="hidden"
+                />
+            ) : null}
         </AnimatePresence>
     </motion.button>)
 }

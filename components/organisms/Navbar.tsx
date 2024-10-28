@@ -3,6 +3,8 @@
 import EffectButton from "@/components/atoms/EffectButton";
 import React from "react";
 import {motion} from "framer-motion";
+import ThemeButton from "@/components/molecules/ThemeButton";
+import LanguageSelect from "@/components/molecules/LanguageSelect";
 
 
 interface Position {
@@ -15,15 +17,16 @@ interface Position {
 const Navbar: React.FC = () => {
     return (
         <nav
-            className="fixed top-0 left-0 right-0 z-50 backdrop-blur-md shadow-lg py-2 px-5 font-jetbrainsMono
+            className="fixed top-0 left-0 right-0 z-50 py-2 px-5 font-jetbrainsMono
              flex justify-between items-center overflow-x-hidden"
         >
             <EffectButton>EP</EffectButton>
-            <div className="border-stone-700 border-2 p-1 rounded-full">
+            <div className="border-stone-700 border-2 p-1 rounded-full hidden md:block">
                 <SlideTabs/>
             </div>
-            <div>
-
+            <div className="flex flex-row gap-2 items-center">
+                <ThemeButton/>
+                <LanguageSelect/>
             </div>
         </nav>)
 }
