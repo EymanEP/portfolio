@@ -1,5 +1,6 @@
 "use client";
 import Select from "@/components/atoms/Select";
+import React from "react";
 
 const languages = [
     {label: "EN", value: "en"},
@@ -8,12 +9,13 @@ const languages = [
 ];
 
 const LanguageSelect = () => {
-    const selectLanguage = (value: string) => {
-        console.log(value);
+    const [selected, setSelected] = React.useState({label: "EN", value: "en"});
+    const selectLanguage = (value: { label: string, value: string }) => {
+        setSelected(value);
     }
 
     return (
-        <Select options={languages} onSelect={selectLanguage} defaultSelect={languages[0]}/>
+        <Select options={languages} onSelect={selectLanguage} defaultSelect={selected}/>
     )
 }
 

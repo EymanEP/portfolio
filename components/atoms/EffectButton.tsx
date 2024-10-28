@@ -17,7 +17,7 @@ const useIsMobile = () => {
         handleResize();
 
         return () => window.removeEventListener("resize", handleResize);
-    })
+    }, [])
     return isMobile;
 }
 
@@ -48,7 +48,7 @@ const EffectButton: React.FC<ButtonProps> = (
 ) => {
     const router = useRouter();
     const [isHover, setIsHover] = React.useState(false);
-    const [playEffect, setPlayEffect] = React.useState(false);
+    const [isMobileAnimation, setIsMobileAnimation] = React.useState(false);
     const isMobile = useIsMobile();
 
     const sizeStyles = {
@@ -56,7 +56,7 @@ const EffectButton: React.FC<ButtonProps> = (
     }
 
     const colorStyles = {
-        contrast: "bg-black text-white border-black dark:border-white hover:text-black",
+        contrast: "bg-black text-white border-black dark:border-stone-600 dark:bg-stone-800 hover:text-black",
         blue: "bg-blue-700 text-white border-blue-500 hover:text-blue-700",
         red: "bg-red-700 text-white border-red-500 hover:text-red-700",
         stone: "bg-stone-700 text-stone-200 border-stone-400 hover:text-stone-700"
@@ -97,7 +97,10 @@ const EffectButton: React.FC<ButtonProps> = (
     }
 
     const handleClick = () => {
-        setPlayEffect(true);
+        if (isMobile) {
+            setIsMobileAnimation(true);
+            setTimeout(() => setIsMobileAnimation(false), 500);
+        }
 
         if (cta) {
             setTimeout(() => {
@@ -106,8 +109,6 @@ const EffectButton: React.FC<ButtonProps> = (
         }
 
         if (onClickMethod) onClickMethod();
-
-        setTimeout(() => setPlayEffect(false), 300);
     }
 
     return (<motion.button
@@ -121,7 +122,7 @@ const EffectButton: React.FC<ButtonProps> = (
     >
         <div className="relative z-20">{children}</div>
         <AnimatePresence>
-            {isHover || (isMobile && playEffect) ? (
+            {isHover || (isMobile && isMobileAnimation) ? (
                 <motion.div className={bgDivClasses}
                             variants={effectVariants}
                             initial="hidden"
