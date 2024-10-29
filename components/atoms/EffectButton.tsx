@@ -5,27 +5,14 @@ import {useRouter} from "next/navigation";
 import {AnimatePresence, motion} from "framer-motion";
 import React from "react";
 import {twMerge} from "tailwind-merge";
-
-const useIsMobile = () => {
-    const [isMobile, setIsMobile] = React.useState(false);
-
-    React.useEffect(() => {
-        const handleResize = () =>
-            setIsMobile(window.innerWidth < 768);
-
-        window.addEventListener("resize", handleResize);
-        handleResize();
-
-        return () => window.removeEventListener("resize", handleResize);
-    }, [])
-    return isMobile;
-}
+import useIsMobile from "@/helpers/useIsMobile";
 
 type ButtonProps = {
     effectDirection?: "top" | "bottom" | "left" | "right";
     cta?: string;
     size?: "small" | "medium" | "large" | "xl";
     color?: "contrast" | "blue" | "red" | "stone";
+    rounded?: "small" | "medium" | "large" | "xl" | "full";
     children: React.ReactNode;
     className?: string;
     bgDivClassName?: string;
@@ -40,6 +27,7 @@ const EffectButton: React.FC<ButtonProps> = (
         children,
         size = "medium",
         color = "contrast",
+        rounded = "full",
         className,
         bgDivClassName,
         disabled = false,
@@ -48,7 +36,7 @@ const EffectButton: React.FC<ButtonProps> = (
 ) => {
     const router = useRouter();
     const [isHover, setIsHover] = React.useState(false);
-    const [isMobileAnimation, setIsMobileAnimation] = React.useState(false);
+    const [isAnimating, setIsAnimating] = React.useState(false);
     const isMobile = useIsMobile();
 
     const sizeStyles = {
@@ -62,12 +50,21 @@ const EffectButton: React.FC<ButtonProps> = (
         stone: "bg-stone-700 text-stone-200 border-stone-400 hover:text-stone-700"
     }
 
+    const roundedStyles = {
+        small: "rounded-sm",
+        medium: "rounded-md",
+        large: "rounded-lg",
+        xl: "rounded-xl",
+        full: "rounded-full",
+    }
+
     const buttonClasses = twMerge(
         classNames(
-            "relative rounded-2xl overflow-hidden group shadow-lg border-2 transition-colors mix-blend-difference " +
+            "relative overflow-hidden group shadow-lg border-2 transition-colors mix-blend-difference " +
             "hover:cursor-pointer",
             sizeStyles[size],
-            colorStyles[color]
+            colorStyles[color],
+            roundedStyles[rounded],
         ), className
     )
 
@@ -98,8 +95,8 @@ const EffectButton: React.FC<ButtonProps> = (
 
     const handleClick = () => {
         if (isMobile) {
-            setIsMobileAnimation(true);
-            setTimeout(() => setIsMobileAnimation(false), 500);
+            setIsAnimating(true);
+            setTimeout(() => setIsAnimating(false), 500);
         }
 
         if (cta) {
@@ -122,7 +119,7 @@ const EffectButton: React.FC<ButtonProps> = (
     >
         <div className="relative z-20">{children}</div>
         <AnimatePresence>
-            {isHover || (isMobile && isMobileAnimation) ? (
+            {isHover || (isMobile && isAnimating) ? (
                 <motion.div className={bgDivClasses}
                             variants={effectVariants}
                             initial="hidden"
