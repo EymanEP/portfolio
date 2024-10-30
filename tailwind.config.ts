@@ -6,7 +6,7 @@ const config: Config = {
         "./components/**/*.{js,ts,jsx,tsx,mdx}",
         "./app/**/*.{js,ts,jsx,tsx,mdx}",
         "./@/components/**/*.{ts,tsx}",
-		"./components/**/*.{js,ts,jsx,tsx,mdx}"
+        "./components/**/*.{js,ts,jsx,tsx,mdx}"
     ],
     darkMode: ["class"],
     theme: {
@@ -51,16 +51,55 @@ const config: Config = {
     				'3': 'hsl(var(--chart-3))',
     				'4': 'hsl(var(--chart-4))',
     				'5': 'hsl(var(--chart-5))'
-    			}
+    			},
+    			'color-1': 'hsl(var(--color-1))',
+    			'color-2': 'hsl(var(--color-2))',
+    			'color-3': 'hsl(var(--color-3))',
+    			'color-4': 'hsl(var(--color-4))',
+    			'color-5': 'hsl(var(--color-5))'
     		},
     		borderRadius: {
     			lg: 'var(--radius)',
     			md: 'calc(var(--radius) - 2px)',
     			sm: 'calc(var(--radius) - 4px)'
+    		},
+    		animation: {
+    			shine: 'shine var(--duration) infinite linear',
+    			'border-beam': 'border-beam calc(var(--duration)*1s) infinite linear',
+    			rainbow: 'rainbow var(--speed, 2s) infinite linear'
+    		},
+    		keyframes: {
+    			shine: {
+    				'0%': {
+    					'background-position': '0% 0%'
+    				},
+    				'50%': {
+    					'background-position': '100% 100%'
+    				},
+    				to: {
+    					'background-position': '0% 0%'
+    				}
+    			},
+    			'border-beam': {
+    				'100%': {
+    					'offset-distance': '100%'
+    				}
+    			},
+    			rainbow: {
+    				'0%': {
+    					'background-position': '0%'
+    				},
+    				'100%': {
+    					'background-position': '200%'
+    				}
+    			}
     		}
     	},
     	fontFamily: {
-    		jetbrainsMono: ["var(--font-jetbrains-mono)"]
+    		jetbrainsMono: ["var(--font-jetbrains-mono)"],
+    		playfairDisplay: ["var(--font-playfair-display)"],
+    		geistVF: ["var(--font-geist-VF)"],
+    		geistMono: ["var(--font-geistMono)"]
     	}
     },
     plugins: [require("tailwindcss-animate")]

@@ -13,5 +13,9 @@
       "projects": "Proyectos",
       "contact": "Contacto"
     }
+  },
+  "thehero": {
+    "developer": "Desarrollador web",
+    "location": "España, La Rioja"
   }
 }

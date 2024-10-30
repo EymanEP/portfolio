@@ -1,10 +1,11 @@
 import React from "react";
+import TheHero from "@/components/organisms/TheHero";
 
 export default async function Home() {
     return (
         <div>
             <section id="home" className="h-screen text-black dark:text-white flex items-center justify-center">
-                <h2 className="text-3xl">HOME Section</h2>
+                <TheHero />
             </section>
             <section id="about" className="h-screen text-black dark:text-white flex items-center justify-center">
                 <h2 className="text-3xl">About Section</h2>
