@@ -1,0 +1,17 @@
+{
+  "page": {
+    "title": "Portfolio",
+    "desc": "Portfolio de Eyman Evgeniev"
+  },
+  "navbar": {
+    "menu": "Menú",
+    "links": {
+      "home": "Inicio",
+      "experience": "Experiencia",
+      "studies": "Estudios",
+      "stack": "Stack",
+      "projects": "Proyectos",
+      "contact": "Contacto"
+    }
+  }
+}
