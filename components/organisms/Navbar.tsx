@@ -26,37 +26,38 @@ const Navbar: React.FC = () => {
 
     return (
         <>
-        <motion.nav
-            className="fixed top-0 left-0 right-0 z-50 py-2 px-5 font-jetbrainsMono
+            <motion.nav
+                className="fixed top-0 left-0 right-0 z-50 py-2 px-5 font-jetbrainsMono
              flex justify-between items-center overflow-x-hidden"
-            variants={{
-                visible: {y: 0},
-                hidden: {y: "-100%"}
-            }}
-            animate={hidden ? 'hidden' : 'visible'}
-            transition={{duration: 0.3, ease: "easeInOut"}}
-        >
-            <EffectButton>EP</EffectButton>
-            {
-                !isMobile && (
-                    <div className="p-0.5 lg:p-1 rounded-full hidden border-2 border-black dark:border-stone-700 md:block">
-                        <SlideTabs/>
-                    </div>
-                )
-            }
-            <div className="flex flex-row gap-2 items-center">
-                <LanguageSelect/>
-                <ThemeButton/>
+                variants={{
+                    visible: {y: 0},
+                    hidden: {y: "-100%"}
+                }}
+                animate={hidden ? 'hidden' : 'visible'}
+                transition={{duration: 0.3, ease: "easeInOut"}}
+            >
+                <EffectButton>EP</EffectButton>
                 {
-                    isMobile && (
-                        <>
-                            <SideBarButton sideBar={sideBar} setSideBar={setSideBar}/>
-                        </>
+                    !isMobile && (
+                        <div
+                            className="p-0.5 lg:p-1 rounded-full hidden border-2 border-black dark:border-stone-700 md:block">
+                            <SlideTabs/>
+                        </div>
                     )
                 }
-            </div>
-        </motion.nav>
-        <SideBar sideBar={sideBar} setSideBar={setSideBar}/>
+                <div className="flex flex-row gap-2 items-center">
+                    <LanguageSelect/>
+                    <ThemeButton/>
+                    {
+                        isMobile && (
+                            <>
+                                <SideBarButton sideBar={sideBar} setSideBar={setSideBar}/>
+                            </>
+                        )
+                    }
+                </div>
+            </motion.nav>
+            <SideBar sideBar={sideBar} setSideBar={setSideBar}/>
         </>)
 }
 

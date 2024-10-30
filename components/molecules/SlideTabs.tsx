@@ -1,5 +1,6 @@
 import React from "react";
 import {motion} from "framer-motion";
+import {useTranslations} from "next-intl";
 
 interface Position {
     left: number;
@@ -8,37 +9,39 @@ interface Position {
     opacity: number;
 }
 
+interface Tab {
+    value: string;
+    link: string;
+}
+
+const tabsArr: Tab[] = [
+    {value: "home", link: "#"},
+    {value: "experience", link: "#"},
+    {value: "studies", link: "#"},
+    {value: "stack", link: "#"},
+    {value: "projects", link: "#"},
+    {value: "contact", link: "#"},
+];
+
 /**
  * Contains all the Tabs with the links
  * @constructor
  */
 const SlideTabs: React.FC = () => {
-    interface Tab {
-        label: string;
-        link: string;
-    }
-
     const [position, setPosition] = React.useState<Position>(
         {
             left: 0, width: 0, opacity: 0, height: 0
         }
     );
 
-    const tabsArr: Tab[] = [
-        {label: "Home", link: "#"},
-        {label: "Experience", link: "#"},
-        {label: "Studies", link: "#"},
-        {label: "Stack", link: "#"},
-        {label: "Projects", link: "#"},
-        {label: "Contact", link: "#"},
-    ]
+    const t = useTranslations('navbar.links')
 
     return (
         <div
             onMouseLeave={() => setPosition((prev) => ({...prev, opacity: 0}))}
             className="relative flex flex-row self-center p-0.5 rounded-full bg-black dark:bg-stone-800 w-fit">
-            {tabsArr.map((tab) => (
-                <Tab setPosition={setPosition} key={tab.label} label={tab.label} link={tab.link}/>
+            {tabsArr.map((tab, index) => (
+                <Tab setPosition={setPosition} key={index} label={t(tab.value)} link={tab.link}/>
             ))}
             <Cursor position={position}/>
         </div>)

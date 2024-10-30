@@ -3,19 +3,20 @@
 import React from "react";
 import {AnimatePresence, motion} from "framer-motion";
 import {ChevronRight, XIcon} from "lucide-react";
+import {useTranslations} from "next-intl";
 
 interface Tab {
-    label: string;
     link: string;
+    value: string;
 }
 
 const tabsArr: Tab[] = [
-    {label: "Home", link: "#"},
-    {label: "Experience", link: "#"},
-    {label: "Studies", link: "#"},
-    {label: "Stack", link: "#"},
-    {label: "Projects", link: "#"},
-    {label: "Contact", link: "#"},
+    {value: "home", link: "#"},
+    {value: "experience", link: "#"},
+    {value: "studies", link: "#"},
+    {value: "stack", link: "#"},
+    {value: "projects", link: "#"},
+    {value: "contact", link: "#"},
 ];
 
 interface SideBarProps {
@@ -24,6 +25,7 @@ interface SideBarProps {
 }
 
 const SideBar: React.FC<SideBarProps> = ({sideBar = false, setSideBar}) => {
+    const t = useTranslations("navbar.links")
     return (
         <AnimatePresence>
             {
@@ -53,7 +55,7 @@ const SideBar: React.FC<SideBarProps> = ({sideBar = false, setSideBar}) => {
                                            href={tab.link}
                                            key={index}
                                            className="flex flex-row justify-between items-center">
-                                            {tab.label}
+                                            {t(tab.value)}
                                             <motion.span><ChevronRight/></motion.span>
                                         </a>
                                     ))}

@@ -1,0 +1,17 @@
+{
+  "page": {
+    "title": "Portfolio",
+    "desc": "Eyman Pashaliev's Portfolio"
+  },
+  "navbar": {
+    "menu": "Menu",
+    "links": {
+      "home": "Home",
+      "experience": "Experience",
+      "studies": "Studies",
+      "stack": "Stack",
+      "projects": "Projects",
+      "contact": "Contact"
+    }
+  }
+}
