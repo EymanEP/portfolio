@@ -64,10 +64,10 @@ const EffectButton: React.FC<ButtonProps> = (
 
     const buttonClasses = twMerge(
         classNames(
-            "relative overflow-hidden group shadow-lg border-2 transition-colors mix-blend-difference " +
+            "relative overflow-hidden group shadow-lg border-2 transition-colors mix-blend-difference" +
             "hover:cursor-pointer",
-            sizeStyles[size],
             colorStyles[color],
+            sizeStyles[size],
             roundedStyles[rounded],
         ), className
     )

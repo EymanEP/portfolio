@@ -1,9 +1,10 @@
 import {RainbowButton} from "@/components/ui/rainbow-button";
 import {FileIcon} from "@radix-ui/react-icons";
-import {useLocale} from "next-intl";
+import {useLocale, useTranslations} from "next-intl";
 
 export default function DownloadButton() {
     const locale = useLocale();
+    const t = useTranslations("thehero");
     const handleDownload = () => {
         const pdfUrl: string = locale === 'es'
             ? "documents/CV_Eyman-Pashaliev.pdf"
@@ -16,7 +17,7 @@ export default function DownloadButton() {
             onClick={handleDownload}
             className="px-6 text-xs h-9 flex flex-row items-center gap-2">
             <FileIcon/>
-            <p>Resume</p>
+            <p>{t('cv')}</p>
         </RainbowButton>
     )
 }

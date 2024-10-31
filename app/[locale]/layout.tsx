@@ -44,7 +44,7 @@ export default async function RootLayout({children, params}: Props) {
         >
         <NextIntlClientProvider messages={messages}>
             <NextThemeProvider>
-                <main className="flex-1 mt-20">
+                <main>
                     <Navbar/>
                     {children}
                 </main>

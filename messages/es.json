@@ -16,6 +16,12 @@
   },
   "thehero": {
     "developer": "Desarrollador web",
-    "location": "España, La Rioja"
+    "location": "España, La Rioja",
+    "opentowork": "Buscando trabajo",
+    "working": "Actualmente trabajando",
+    "cv": "Curriculum",
+    "aboutme": "Sobre mí",
+    "aboutmedesc": "Soy un desarrollador web en busca de una oportunidad para perfeccionar mis habilidades de programación y aportar al trabajo en equipo. Sea en roles de frontend, backend o fullstack.",
+    "aboutbtn": "Más sobre mí"
   }
 }
