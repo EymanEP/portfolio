@@ -7,6 +7,10 @@ import React from "react";
 import {twMerge} from "tailwind-merge";
 import useIsMobile from "@/helpers/useIsMobile";
 
+/**
+ * TODO: Change the animation to use variants, maybe that way it will fix the animation on mobile
+ */
+
 type ButtonProps = {
     effectDirection?: "top" | "bottom" | "left" | "right";
     cta?: string;
@@ -40,7 +44,7 @@ const EffectButton: React.FC<ButtonProps> = (
     const isMobile = useIsMobile();
 
     const sizeStyles = {
-        small: "px-2 py-1 text-sm", medium: "px-4 py-2 text-base", large: "px-6 py-3 text-lg", xl: "px-8 py-4 text-xl",
+        small: "px-2 py-1 text-sm", medium: "px-4 py-2 text-xs", large: "px-6 py-3 text-lg", xl: "px-8 py-4 text-xl",
     }
 
     const colorStyles = {
@@ -60,10 +64,10 @@ const EffectButton: React.FC<ButtonProps> = (
 
     const buttonClasses = twMerge(
         classNames(
-            "relative overflow-hidden group shadow-lg border-2 transition-colors mix-blend-difference " +
+            "relative overflow-hidden group shadow-lg border-2 transition-colors mix-blend-difference" +
             "hover:cursor-pointer",
-            sizeStyles[size],
             colorStyles[color],
+            sizeStyles[size],
             roundedStyles[rounded],
         ), className
     )

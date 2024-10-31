@@ -3,6 +3,7 @@
 import React, {MutableRefObject, useEffect, useRef} from "react";
 import {motion} from "framer-motion";
 import {TriangleDownIcon} from "@radix-ui/react-icons";
+import {createPortal} from "react-dom";
 
 interface SelectOption {
     label: string;
@@ -30,14 +31,17 @@ const Select = ({options, defaultSelect, onSelect, placeholder = "Select an opti
     }
 
     useEffect(() => {
-        if (!buttonRef.current) return;
+        // Get the position of the two elements to center them
+        if (!buttonRef.current || !dropdownRef.current) return;
 
         const buttonRect = buttonRef.current.getBoundingClientRect();
+        const dropwdownRect = dropdownRef.current.getBoundingClientRect();
         setDropdownPosition({
-            top: buttonRect.top + buttonRect.height * 1.4,
-            left: buttonRect.left - (buttonRect.width / 2),
+            top: buttonRect.top + (buttonRect.height * 1.4),
+            left: buttonRect.left + (buttonRect.width / 2) - (dropwdownRect.width / 2),
         })
 
+        // Handles if the user clicks outside when its opened
         const handleClickOutside = (event: MouseEvent) => {
             if (dropdownRef.current &&
                 buttonRef.current &&
@@ -47,15 +51,23 @@ const Select = ({options, defaultSelect, onSelect, placeholder = "Select an opti
             }
         }
 
+        // Closes if the user scrolls
+        const handleScroll = () => isOpen && setIsOpen(false);
+
+        window.addEventListener("scroll", handleScroll);
+
         document.addEventListener("mousedown", handleClickOutside);
-        return () => document.removeEventListener("mousedown", handleClickOutside);
+        return () => {
+            document.removeEventListener("mousedown", handleClickOutside);
+            window.removeEventListener("scroll", handleScroll);
+        };
     }, [isOpen])
 
     return (
-        <div>
+        <>
             <motion.button
                 ref={buttonRef}
-                className="px-4 py-2 w-24 rounded-lg shadow-lg bg-black border-2 text-white flex flex-row justify-between items-center
+                className="px-4 py-2 w-24 rounded-lg text-xs shadow-lg bg-black border-2 text-white flex flex-row justify-between items-center
                 dark:bg-stone-800 dark:border-stone-600 hover:bg-stone-900"
                 onClick={toggleDropdown}
                 whileHover={{
@@ -76,31 +88,32 @@ const Select = ({options, defaultSelect, onSelect, placeholder = "Select an opti
                 </motion.span>
             </motion.button>
             {
-                isOpen && (
-                    <motion.div
-                        className="w-40 border-2 overflow-hidden dropdown fixed z-10 bg-black text-white rounded-lg dark:bg-stone-800 dark:border-stone-600"
-                        ref={dropdownRef}
-                        style={{top: dropdownPosition?.top, left: dropdownPosition?.left}}
-                        initial={{height: 0, opacity: 0 }}
-                        animate={{ height: "auto", opacity: 1 }}
-                        exit={{ height: 0, opacity: 0 }}
-                        transition={{ type: "spring", stiffness: 300, damping: 30 }}
-                    >
-                        {
-                            options.map((option, index) => (
-                                <motion.div
-                                    className="cursor-pointer px-4 py-2 text-center hover:bg-stone-900 transition-colors duration-200"
-                                    key={index}
-                                    onClick={() => handleOptionClick(option)}
-                                >
-                                    {option.label}
-                                </motion.div>
-                            ))
-                        }
-                    </motion.div>
-                )
+                isOpen && createPortal(
+                    (
+                        <motion.div
+                            className="w-28 text-xs fixed border-2 overflow-hidden z-50 bg-black text-white rounded-lg dark:bg-stone-800 dark:border-stone-600"
+                            ref={dropdownRef}
+                            style={{top: dropdownPosition?.top, left: dropdownPosition?.left}}
+                            initial={{height: 0, opacity: 0}}
+                            animate={{height: "auto", opacity: 1}}
+                            exit={{height: 0, opacity: 0}}
+                            transition={{type: "spring", stiffness: 300, damping: 30}}
+                        >
+                            {
+                                options.map((option, index) => (
+                                    <motion.div
+                                        className="cursor-pointer px-4 py-2 text-center hover:bg-stone-900 transition-colors duration-200"
+                                        key={index}
+                                        onClick={() => handleOptionClick(option)}
+                                    >
+                                        {option.label}
+                                    </motion.div>
+                                ))
+                            }
+                        </motion.div>
+                    ), document.body)
             }
-        </div>
+        </>
     )
 }
 

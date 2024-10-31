@@ -11,13 +11,25 @@ const jetBrainsMono = localFont({
     src: "../fonts/JetBrainsMono.ttf", variable: "--font-jetbrains-mono", weight: "100 900",
 })
 
+const playfairDisplay = localFont({
+    src: "../fonts/PlayfairDisplay.ttf", variable: "--font-playfair-display", weight: "100 900",
+})
+
+const geistVF = localFont({
+    src: "../fonts/GeistVF.woff", variable: "--font-geist-VF", weight: "100 900",
+})
+
+const geistMono = localFont({
+    src: "../fonts/GeistMonoVF.woff", variable: "--font-geistMono", weight: "100 900",
+})
+
 export const metadata: Metadata = {
     title: "Portfolio", description: "Eyman Pashaliev's Portfolio",
 };
 
 interface Props {
     children: React.ReactNode;
-    params: { locale:string };
+    params: { locale: string };
 }
 
 export default async function RootLayout({children, params}: Props) {
@@ -26,11 +38,13 @@ export default async function RootLayout({children, params}: Props) {
     return (
         <html lang={locale} className="m-0 overflow-x-hidden" suppressHydrationWarning>
         <body
-            className={`${jetBrainsMono.variable} antialiased transition-all duration-300`}
+            className={`${jetBrainsMono.variable} ${playfairDisplay.variable} 
+            ${geistMono.variable} ${geistVF.variable} 
+            antialiased transition-all duration-300`}
         >
         <NextIntlClientProvider messages={messages}>
             <NextThemeProvider>
-                <main className="flex-1 mt-20">
+                <main>
                     <Navbar/>
                     {children}
                 </main>

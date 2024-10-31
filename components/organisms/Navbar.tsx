@@ -40,7 +40,7 @@ const Navbar: React.FC = () => {
                 {
                     !isMobile && (
                         <div
-                            className="p-0.5 lg:p-1 rounded-full hidden border-2 border-black dark:border-stone-700 md:block">
+                            className="p-0.5 self-center justify-center lg:p-1 rounded-full hidden border-2 border-black dark:border-stone-700 md:block">
                             <SlideTabs/>
                         </div>
                     )
