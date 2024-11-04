@@ -6,6 +6,7 @@ import React from "react";
 import NextThemeProvider from "@/app/Providers/NextThemeProvider";
 import {NextIntlClientProvider} from "next-intl";
 import {getMessages} from "next-intl/server";
+import ScrollProgress from "@/components/atoms/ScrollProgress";
 
 const jetBrainsMono = localFont({
     src: "../fonts/JetBrainsMono.ttf", variable: "--font-jetbrains-mono", weight: "100 900",
@@ -46,6 +47,7 @@ export default async function RootLayout({children, params}: Props) {
             <NextThemeProvider>
                 <main>
                     <Navbar/>
+                    <ScrollProgress/>
                     {children}
                 </main>
             </NextThemeProvider>
