@@ -1,30 +1,27 @@
 "use client";
-import React from "react";
+import React, {createRef, FC, forwardRef, RefObject, useEffect, useMemo, useState} from "react";
 import {AnimatePresence, motion} from "framer-motion";
 import {FadeDown} from "@/components/ui/FadeDown";
 import {twMerge} from "tailwind-merge";
-import Image from "next/image";
+import Cursor from "@/components/atoms/Cursor";
+import Position from "@/interfaces/Position";
+import {ContentType} from "@/interfaces/ContentType";
+import ExperienceStudiesInfo from "@/data/ExperienceStudiesInfo";
+import InfoItem from "@/components/atoms/InfoItem";
+import {useLocale} from "next-intl";
+import Lang from "@/interfaces/Lang";
 
-type ContentType = "experience" | "studies";
-
-interface Info {
-    id: number;
-    type: ContentType;
-    title: string;
-    place: string;
-    date: string;
-}
-
-const data: Info[] = [
-    {id: 1, type: "experience", title: "Frontend Developer", place: "Company A", date: "Jan 2021 - Jun 2021"},
-    {id: 2, type: "experience", title: "Backend Developer", place: "Company B", date: "Jul 2021 - Dec 2021"},
-    {id: 3, type: "experience", title: "Full Stack Developer", place: "Company C", date: "Jan 2022 - Present"},
-    {id: 10, type: "studies", title: "Bachelor's in Computer Science", place: "University X", date: "2016 - 2020"},
-    {id: 11, type: "studies", title: "Master's in Software Engineering", place: "University Y", date: "2021 - Present"},
-];
-
-const TheExperience: React.FC = () => {
+/**
+ * Content state sets the content to display
+ * Position and tabRefs set the state for the Cursor to follow the active tabs
+ * @constructor
+ */
+const TheExperience: FC = () => {
     const [content, setContent] = React.useState<ContentType>("experience");
+    const [position, setPosition] = React.useState<Position>({left: 0, opacity: 0, height: 0, width: 0})
+    const [tabRefs, setTabRefs] = useState<RefObject<HTMLButtonElement>[]>([]);
+
+    const locale = useLocale() as keyof Lang;
 
     const containerVariants = {
         hidden: {opacity: 0, maxHeight: 0},
@@ -32,35 +29,71 @@ const TheExperience: React.FC = () => {
             opacity: 1,
             maxHeight: "100vh",
         },
-
     }
 
-    const tabs = [
+    const tabs = useMemo(() => [
         {value: "experience" as ContentType, label: "Experience"},
         {value: "studies" as ContentType, label: "Studies"}
-    ]
+    ], [])
+
+    // This sets the tabrefs to the tabs used in the component
+    useEffect(() => {
+        setTabRefs(tabs.map(() => createRef<HTMLButtonElement>()))
+    }, [tabs]);
+
+    /**
+     * UpdatePosition is used to change the position of the cursor to that of the active tab
+     */
+    const updatePosition = () => {
+        if (tabRefs.length === 0) return;
+        const activeTabRef = tabRefs[content === "experience" ? 0 : 1]
+
+        if (!activeTabRef || !activeTabRef.current) return;
+
+        const {width, height} = activeTabRef.current.getBoundingClientRect();
+        setPosition({left: activeTabRef.current.offsetLeft, width, height, opacity: 1})
+    }
+
+    /**
+     * This useEffect is in charge of changing the position of the Cursor everytime the content changes
+     */
+    useEffect(() => {
+        updatePosition();
+
+        const handleResize = () => updatePosition();
+
+        window.addEventListener("resize", handleResize);
+
+        return () => window.removeEventListener("resize", handleResize);
+    }, [content, tabRefs]);
 
     return (
         <div className="flex flex-col gap-8 text-stone-700 dark:text-stone-200">
             <span className="font-playfairDisplay"><FadeDown text="Experience & Studies"/></span>
             <motion.div
-                className="flex flex-col gap-5 border-2 border-black rounded-xl p-3 shadow-lg overflow-hidden dark:border-stone-300"
+                className="flex flex-col gap-5 border-2 border-stone-600 rounded-xl p-3 shadow-lg overflow-hidden dark:border-stone-700"
                 initial="hidden"
                 whileInView="visible"
                 viewport={{once: true, amount: "all"}}
                 variants={containerVariants}
-                transition={{duration: 0.8, ease: "easeInOut", delay: .5}}
+                transition={{duration: 0.8, ease: "easeInOut", delay: .3}}
             >
                 <div className="relative font-geistMono flex flex-row items-center justify-around">
                     {
                         tabs.map((item, index) => (
                             <Tab key={index}
+                                 ref={tabRefs[index]}
                                  setContentFn={setContent}
                                  value={item.value}
                                  label={item.label}
-                                 isActive={content === item.value}/>
+                                 isActive={content === item.value}
+                            />
                         ))
                     }
+                    <Cursor
+                        position={position}
+                        className="bg-stone-600 dark:bg-stone-700 rounded-lg "
+                    />
                 </div>
                 <AnimatePresence mode="wait">
                     <motion.div
@@ -72,14 +105,16 @@ const TheExperience: React.FC = () => {
                         transition={{duration: 0.6, ease: "easeInOut", staggerChildren: 0.5, startDelay: 0.15}}
                     >
                         {
-                            data
+                            ExperienceStudiesInfo
                                 .filter(item => item.type === content)
                                 .map((item, index) => (
                                     <InfoItem key={item.id + index}
-                                              title={item.title}
+                                              title={item.title[locale]}
                                               place={item.place}
-                                              date={item.date}
+                                              date={item.date[locale]}
                                               index={index}
+                                              infoType={item.type}
+                                              imgSrc={item.imgSrc}
                                     />
                                 ))
                         }
@@ -92,61 +127,26 @@ const TheExperience: React.FC = () => {
 
 export default TheExperience;
 
-const Tab: React.FC<{
-    setContentFn: (val: ContentType) => void;
-    value: ContentType;
-    label: string;
-    className?: string;
-    isActive: boolean;
-}> = ({setContentFn, value, label, className, isActive}) => {
+/**
+ * Component used to display the Tabs for navigation
+ */
+const Tab = forwardRef<HTMLButtonElement, {
+    setContentFn: (val: ContentType) => void,
+    value: ContentType,
+    label: string,
+    isActive?: boolean,
+}>(function Tab({setContentFn, value, label, isActive}, ref) {
     return (
         <button
+            ref={ref}
             onClick={() => setContentFn(value)}
-            className={twMerge(className, "px-4 py-1", isActive && "font-bold")}
+            className={
+                twMerge("px-4 py-1 w-full h-full z-10 text-stone-700 dark:text-stone-100",
+                    isActive && "font-bold text-stone-200")
+            }
         >
             {label}
         </button>
     )
-}
+})
 
-interface InfoItemProps {
-    title: string;
-    place: string;
-    date: string;
-    index: number;
-    imgSrc?: string;
-}
-
-const InfoItem: React.FC<InfoItemProps> = (
-    {
-        title,
-        place,
-        date,
-        index,
-        imgSrc = "/150x150.png",
-    }) => {
-
-    const itemVariants = {
-        hidden: {opacity: 0, x: (-30 - index * 100)},
-        visible: {opacity: 1, x: 0, transition: {duration: 0.5, ease: "easeOut"}},
-    };
-
-    return (
-        <motion.div
-            className="item flex flex-row gap-5"
-            variants={itemVariants}
-            initial="hidden"
-            animate="visible"
-        >
-            <div className="w-20 h-20">
-                <Image src={imgSrc} alt={`${place} image`} width={80} height={80}
-                       className="w-full h-full object-cover"/>
-            </div>
-            <div className="flex flex-col flex-1 font-geistMono text-stone-700 dark:text-stone-200">
-                <p className="font-geistVF text-xs bg-stone-200 rounded px-3 w-fit dark:bg-stone-800">{date}</p>
-                <h3 className="font-bold">{title}</h3>
-                <p className="font-semibold text-sm text-stone-700 dark:text-stone-400">{place}</p>
-            </div>
-        </motion.div>
-    )
-}

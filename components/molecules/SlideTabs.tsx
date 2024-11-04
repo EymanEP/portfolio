@@ -1,13 +1,7 @@
 import React from "react";
-import {motion} from "framer-motion";
 import {useTranslations} from "next-intl";
-
-interface Position {
-    left: number;
-    width: number;
-    height: number;
-    opacity: number;
-}
+import Cursor from "@/components/atoms/Cursor";
+import Position from "@/interfaces/Position";
 
 interface Tab {
     value: string;
@@ -43,7 +37,7 @@ const SlideTabs: React.FC = () => {
             {tabsArr.map((tab, index) => (
                 <Tab setPosition={setPosition} key={index} label={t(tab.value)} link={tab.link}/>
             ))}
-            <Cursor position={position}/>
+            <Cursor className="bg-stone-800 mix-blend-difference rounded-full" position={position}/>
         </div>)
 }
 
@@ -77,17 +71,4 @@ const Tab: React.FC<TabProps> = ({label, link, setPosition}) => {
     >
         {label}
     </a>
-}
-
-
-interface CursorProps {
-    position: Position;
-}
-
-const Cursor: React.FC<CursorProps> = ({position}) => {
-    return <motion.div
-        animate={position}
-        transition={{type: "spring", stiffness: 200, damping: 15, mass: 0.5}}
-        className="absolute z-0 rounded-full bg-stone-800 mix-blend-difference"
-    />;
 }
