@@ -113,7 +113,7 @@ const TheExperience: FC = () => {
                                               place={item.place}
                                               date={item.date[locale]}
                                               index={index}
-                                              infoType={item.type}
+                                              description={item.description}
                                               imgSrc={item.imgSrc}
                                     />
                                 ))

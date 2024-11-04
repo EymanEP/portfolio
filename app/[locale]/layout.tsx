@@ -7,6 +7,7 @@ import NextThemeProvider from "@/app/Providers/NextThemeProvider";
 import {NextIntlClientProvider} from "next-intl";
 import {getMessages} from "next-intl/server";
 import ScrollProgress from "@/components/atoms/ScrollProgress";
+import ReactLenis from "lenis/react";
 
 const jetBrainsMono = localFont({
     src: "../fonts/JetBrainsMono.ttf", variable: "--font-jetbrains-mono", weight: "100 900",
@@ -46,9 +47,11 @@ export default async function RootLayout({children, params}: Props) {
         <NextIntlClientProvider messages={messages}>
             <NextThemeProvider>
                 <main>
-                    <Navbar/>
-                    <ScrollProgress/>
-                    {children}
+                    <ReactLenis root>
+                        <Navbar/>
+                        <ScrollProgress/>
+                        {children}
+                    </ReactLenis>
                 </main>
             </NextThemeProvider>
         </NextIntlClientProvider>

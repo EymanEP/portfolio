@@ -75,6 +75,10 @@ const ExperienceStudiesInfo: Info[] = [
             en: "Sept. 2022 - June 2024",
             es: "Sept. 2022 - Junio 2024"
         },
+        description: {
+            en: "",
+            es: "",
+        },
         imgSrc: "/logos/jesuitas.png",
     },
     {
@@ -88,6 +92,10 @@ const ExperienceStudiesInfo: Info[] = [
         date: {
             en: "Sept. 2020 - June 2022",
             es: "Sept. 2020 - Junio 2022"
+        },
+        description: {
+            en: "",
+            es: "",
         },
         imgSrc: "/logos/jesuitas.png",
     },
