@@ -51,7 +51,7 @@ const Modal: FC<ModalProps> = ({isOpen, onClose, children}) => {
             transition={{duration: .5, ease: "easeInOut"}}
         >
             <motion.div
-                className="bg-white rounded-lg shadow-lg w-11/12 md:w-1/3 p-6 text-stone-200 dark:bg-stone-800"
+                className="bg-white rounded-lg shadow-lg w-11/12 md:w-1/3 p-6 text-stone-200 dark:bg-black dark:border-4 dark:border-stone-800"
                 onClick={(e: Event) => e.stopPropagation()}
                 initial={{scale: 0.5}}
                 animate={{scale: 1}}

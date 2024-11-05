@@ -4,8 +4,8 @@ interface Tab {
 }
 
 const NavbarTabs: Tab[] = [
-    {value: "home", link: "#"},
-    {value: "experience", link: "#"},
+    {value: "home", link: "#home"},
+    {value: "experience", link: "#experience-studies"},
     {value: "stack", link: "#"},
     {value: "projects", link: "#"},
     {value: "contact", link: "#"},

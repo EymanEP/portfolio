@@ -15,7 +15,7 @@ export default function DownloadButton() {
     return (
         <RainbowButton
             onClick={handleDownload}
-            className="px-6 text-xs h-9 flex flex-row items-center gap-2">
+            className="px-6 text-xs h-9 flex flex-row items-center gap-2 dark:bg-black">
             <FileIcon/>
             <p>{t('cv')}</p>
         </RainbowButton>

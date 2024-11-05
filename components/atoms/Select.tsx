@@ -72,7 +72,6 @@ const Select = ({options, defaultSelect, onSelect, placeholder = "Select an opti
                 onClick={toggleDropdown}
                 whileHover={{
                     scale: 1.05,
-                    backgroundColor: "rgb(28 25 23)",
                     transition: {duration: 0.2}
                 }}
                 whileTap={{scale: 0.98}}

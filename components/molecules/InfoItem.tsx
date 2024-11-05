@@ -108,7 +108,7 @@ const InfoItem: FC<InfoItemProps> = (
                                             transition={{ease: "easeInOut", duration: .5}}
                                             className="flex flex-row gap-4"
                                 >
-                                    <div className="w-20 h-20 rounded-lg shadow-lg overflow-hidden">
+                                    <div className="w-20 h-20 min-w-20 min-h-20 rounded-lg shadow-lg overflow-hidden dark:bg-white">
                                         <Image src={imgSrc} alt={place} width={80} height={80}
                                                className="object-contain w-full h-full"/>
                                     </div>
@@ -121,7 +121,7 @@ const InfoItem: FC<InfoItemProps> = (
                                     initial={{opacity: 0, y: 50}}
                                     animate={{opacity: 1, y: 0}}
                                     transition={{ease: "easeInOut", duration: .5}}
-                                    className="flex flex-col gap-2 list-disc"
+                                    className="flex flex-col gap-2 list-disc pl-6"
                                 >
                                     {
                                         content!.map((line, index) => (
