@@ -76,7 +76,7 @@ const TheExperience: FC = () => {
                 whileInView="visible"
                 viewport={{once: true, amount: "all"}}
                 variants={containerVariants}
-                transition={{duration: 0.5, ease: "easeInOut", delay: .2}}
+                transition={{duration: 0.6, ease: "easeInOut", delay: .1}}
             >
                 <div className="relative font-geistMono flex flex-row items-center justify-around">
                     {
@@ -92,7 +92,7 @@ const TheExperience: FC = () => {
                     }
                     <Cursor
                         position={position}
-                        className="bg-stone-600 dark:bg-stone-700 rounded-lg "
+                        className="bg-black dark:bg-white rounded-lg "
                     />
                 </div>
                 <AnimatePresence mode="wait">
@@ -141,8 +141,8 @@ const Tab = forwardRef<HTMLButtonElement, {
             ref={ref}
             onClick={() => setContentFn(value)}
             className={
-                twMerge("px-4 py-1 w-full h-full z-10 text-stone-700 dark:text-stone-100",
-                    isActive && "font-bold text-stone-200")
+                twMerge("px-4 py-1 w-full h-full z-10 text-stone-700 dark:text-stone-200",
+                    isActive && "font-bold text-stone-200 dark:text-stone-800")
             }
         >
             {label}

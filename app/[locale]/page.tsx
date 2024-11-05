@@ -5,11 +5,12 @@ import TheExperience from "@/components/organisms/TheExperience";
 export default async function Home() {
     return (
         <div className="xl:flex justify-center">
-            <div className="px-6 md:px-24 lg:px-28 xl:max-w-[1100px]">
+            <div id="home" className="px-6 md:px-24 lg:px-28 xl:max-w-[1100px]">
                 <section id="home" className="h-screen text-black flex flex-col justify-center dark:text-white">
                     <TheHero/>
                 </section>
-                <section id="about" className="h-screen text-black flex flex-col justify-center dark:text-white">
+                <section id="experience-studies"
+                         className="h-screen text-black flex flex-col justify-center dark:text-white">
                     <TheExperience/>
                 </section>
                 <section id="projects"

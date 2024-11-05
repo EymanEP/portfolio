@@ -45,8 +45,18 @@ interface TabProps {
  */
 const Tab: React.FC<TabProps> = ({label, link, setPosition}) => {
     const ref = React.useRef<HTMLAnchorElement>(null);
+    const handleClick = (e: React.MouseEvent<HTMLAnchorElement, MouseEvent>) => {
+        if (link.startsWith("#")) {
+            e.preventDefault();
+            const targetElement = document.querySelector(link);
+            if (!targetElement) return;
+            targetElement.scrollIntoView({behavior: "smooth"});
+        }
+
+    }
     return <a href={link}
               ref={ref}
+              onClick={handleClick}
               onMouseEnter={() => {
                   if (!ref.current) return;
 

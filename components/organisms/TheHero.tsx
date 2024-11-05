@@ -48,13 +48,12 @@ const TheHero: React.FC = () => {
     }
 
     return (
-        <div
-            className="flex flex-col justify-between divide-y-4 lg:flex-row lg:divide-y-0 lg:divide-x-4">
+        <div className="flex flex-col justify-between divide-y-4 lg:flex-row lg:divide-y-0 lg:divide-x-4">
             <div className="flex flex-col gap-5 py-4 lg:py-0 flex-1 lg:pr-8">
                 <div className="flex flex-row justify-between lg:justify-around lg:gap-5">
                     <Avatar src="/avatar.jpg" alt="Eyman Pashaliev photo"/>
                     <div className="space-y-2 text-stone-700 font-playfairDisplay dark:text-stone-200">
-                        <FadeDown text="Eyman Pashaliev" />
+                        <FadeDown text="Eyman Pashaliev"/>
                         <WordPullUp className="font-semibold tracking-tight text-xl text-left"
                                     words={t('developer')}/>
                         <p className="font-geistMono flex flex-row items-center dark:text-stone-200">
@@ -79,7 +78,7 @@ const TheHero: React.FC = () => {
 
             <div className="space-y-5 justify-between flex-col py-4 lg:py-0 lg:flex flex-1 lg:pl-8">
                 <div className="space-y-4 text-stone-700 font-playfairDisplay dark:text-stone-200">
-                    <FadeDown text={t("aboutme")} />
+                    <FadeDown text={t("aboutme")}/>
                     <p className="tracking-wider font-medium">
                         {t("aboutmedesc")}
                     </p>
@@ -129,10 +128,15 @@ const TechIcons: React.FC = () => {
     return (
         <div className="flex flex-row space-x-3">
             {tech.map((t, index) => (
-                <div className="flex flex-col items-center" key={index}>
+                <motion.div
+                    initial={{rotate: -45 + (index * 10), opacity: 0}}
+                    animate={{rotate: 0, opacity: 1}}
+                    transition={{type: "spring", duration: 0.5 + (index * 0.25)}}
+                    className="flex flex-col items-center" key={index}
+                >
                     <p className="text-xs font-geistMono">{t.name}</p>
                     <span className="text-3xl">{t.icon}</span>
-                </div>
+                </motion.div>
             ))}
         </div>
     )
@@ -142,15 +146,15 @@ const WorkStatus: React.FC<{ status: "open" | "closed" }> = ({status}) => {
     const t = useTranslations("thehero");
     const message = status === "open" ? t("opentowork") : t("working");
     const statusClasses = {
-        "open": "bg-green-200 text-green-800",
-        "closed": "bg-amber-200 text-amber-800"
+        "open": "bg-green-200 text-green-800 dark:bg-green-800 dark:text-green-200",
+        "closed": "bg-amber-200 text-amber-800 dark:bg-amber-800 dark:text-amber-200"
     }
     const classes = twMerge(statusClasses[status],
         "font-geistVF tracking-tighter px-4 rounded-xl w-fit flex flex-row items-center gap-2"
     )
     const dotClasses = twMerge(status === 'open'
-        ? 'bg-green-300 border-green-800'
-        : 'bg-amber-300 border-amber-800',
+            ? 'bg-green-300 border-green-800'
+            : 'bg-amber-300 border-amber-800',
         " border w-3 h-3 rounded-full"
     )
     return (
