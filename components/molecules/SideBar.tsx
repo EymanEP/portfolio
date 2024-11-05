@@ -4,20 +4,7 @@ import React from "react";
 import {AnimatePresence, motion} from "framer-motion";
 import {ChevronRight, XIcon} from "lucide-react";
 import {useTranslations} from "next-intl";
-
-interface Tab {
-    link: string;
-    value: string;
-}
-
-const tabsArr: Tab[] = [
-    {value: "home", link: "#"},
-    {value: "experience", link: "#"},
-    {value: "studies", link: "#"},
-    {value: "stack", link: "#"},
-    {value: "projects", link: "#"},
-    {value: "contact", link: "#"},
-];
+import NavbarTabs from "@/data/NavbarTabs";
 
 interface SideBarProps {
     sideBar: boolean
@@ -50,7 +37,7 @@ const SideBar: React.FC<SideBarProps> = ({sideBar = false, setSideBar}) => {
                                     </span>
                                 </div>
                                 <div className="flex flex-col gap-5 text-xl text-stone-800 dark:text-stone-200">
-                                    {tabsArr.map((tab, index) => (
+                                    {NavbarTabs.map((tab, index) => (
                                         <a onClick={() => setSideBar(false)}
                                            href={tab.link}
                                            key={index}

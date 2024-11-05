@@ -2,20 +2,7 @@ import React from "react";
 import {useTranslations} from "next-intl";
 import Cursor from "@/components/atoms/Cursor";
 import Position from "@/interfaces/Position";
-
-interface Tab {
-    value: string;
-    link: string;
-}
-
-const tabsArr: Tab[] = [
-    {value: "home", link: "#"},
-    {value: "experience", link: "#"},
-    {value: "studies", link: "#"},
-    {value: "stack", link: "#"},
-    {value: "projects", link: "#"},
-    {value: "contact", link: "#"},
-];
+import NavbarTabs from "@/data/NavbarTabs";
 
 /**
  * Contains all the Tabs with the links
@@ -34,7 +21,7 @@ const SlideTabs: React.FC = () => {
         <div
             onMouseLeave={() => setPosition((prev) => ({...prev, opacity: 0}))}
             className="relative flex flex-row self-center p-0.5 rounded-full bg-black dark:bg-stone-800 w-fit">
-            {tabsArr.map((tab, index) => (
+            {NavbarTabs.map((tab, index) => (
                 <Tab setPosition={setPosition} key={index} label={t(tab.value)} link={tab.link}/>
             ))}
             <Cursor className="bg-stone-800 mix-blend-difference rounded-full" position={position}/>

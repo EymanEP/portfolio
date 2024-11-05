@@ -7,7 +7,7 @@ import Cursor from "@/components/atoms/Cursor";
 import Position from "@/interfaces/Position";
 import {ContentType} from "@/interfaces/ContentType";
 import ExperienceStudiesInfo from "@/data/ExperienceStudiesInfo";
-import InfoItem from "@/components/atoms/InfoItem";
+import InfoItem from "@/components/molecules/InfoItem";
 import {useLocale} from "next-intl";
 import Lang from "@/interfaces/Lang";
 
@@ -76,7 +76,7 @@ const TheExperience: FC = () => {
                 whileInView="visible"
                 viewport={{once: true, amount: "all"}}
                 variants={containerVariants}
-                transition={{duration: 0.8, ease: "easeInOut", delay: .3}}
+                transition={{duration: 0.5, ease: "easeInOut", delay: .2}}
             >
                 <div className="relative font-geistMono flex flex-row items-center justify-around">
                     {

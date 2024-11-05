@@ -76,8 +76,18 @@ const ExperienceStudiesInfo: Info[] = [
             es: "Sept. 2022 - Junio 2024"
         },
         description: {
-            en: "",
-            es: "",
+            en: "Java development\n" +
+                "Frontend development using Angular\n" +
+                "Backend development using Hibernate and SpringBoot\n" +
+                "Mobile development using Kotlin and Jetpack Compose\n" +
+                "Plugin and deployment for Odoo using Python\n" +
+                "Deployments using Docker and Linux",
+            es: "Programación con Java\n" +
+                "Desarrollo frontend con Angular\n" +
+                "Desarrollo backend con Hibernate y SpringBoot\n" +
+                "Desarrollo de aplicaciones móviles con Kotlin y Jetpack Compose\n" +
+                "Programación de plugins y despliegue de Odoo con Python\n" +
+                "Uso y despliegue con Docker y Linux"
         },
         imgSrc: "/logos/jesuitas.png",
     },
@@ -92,10 +102,6 @@ const ExperienceStudiesInfo: Info[] = [
         date: {
             en: "Sept. 2020 - June 2022",
             es: "Sept. 2020 - Junio 2022"
-        },
-        description: {
-            en: "",
-            es: "",
         },
         imgSrc: "/logos/jesuitas.png",
     },
