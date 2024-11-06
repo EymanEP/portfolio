@@ -1,5 +1,3 @@
-import {Project} from "@/interfaces/Project";
+import { Project } from "@/interfaces/Project";
 
-export const Projects: Project[] = [
-
-]
+export const Projects: Project[] = [];

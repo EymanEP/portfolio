@@ -1,4 +1,4 @@
 export default interface Lang {
-    es: string,
-    en: string,
+  es: string;
+  en: string;
 }

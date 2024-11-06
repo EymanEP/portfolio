@@ -8,7 +8,7 @@ import useIsMobile from "@/helpers/useIsMobile";
 import BreathingDot from "@/components/atoms/BreathingDot";
 import { ArrowTopRightIcon, Cross1Icon } from "@radix-ui/react-icons";
 import Modal from "@/components/molecules/Modal";
-import {Project, Technology} from "@/interfaces/Project";
+import { Project, Technology } from "@/interfaces/Project";
 
 const project: Project = {
   title: "The Project",
