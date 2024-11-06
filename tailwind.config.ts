@@ -111,6 +111,6 @@ const config: Config = {
     		geistMono: ["var(--font-geistMono)"]
     	}
     },
-    plugins: [require("tailwindcss-animate")]
+    plugins: [require("tailwindcss-animate"), "prettier-plugin-tailwindcss"]
 };
 export default config;

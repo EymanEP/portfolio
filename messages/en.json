@@ -22,5 +22,8 @@
     "aboutme": "About me",
     "aboutmedesc": "Im a web developer in search of an oportunity to perfect my programming skills and contribute work in a team. I'm open to work as a frontend, backend or fullstack developer",
     "aboutbtn": "More about me"
+  },
+  "theexperience": {
+    "title": "Experience & Studies"
   }
 }

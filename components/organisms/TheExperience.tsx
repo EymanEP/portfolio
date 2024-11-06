@@ -8,7 +8,7 @@ import Position from "@/interfaces/Position";
 import {ContentType} from "@/interfaces/ContentType";
 import ExperienceStudiesInfo from "@/data/ExperienceStudiesInfo";
 import InfoItem from "@/components/molecules/InfoItem";
-import {useLocale} from "next-intl";
+import {useLocale, useTranslations} from "next-intl";
 import Lang from "@/interfaces/Lang";
 
 /**
@@ -20,7 +20,7 @@ const TheExperience: FC = () => {
     const [content, setContent] = React.useState<ContentType>("experience");
     const [position, setPosition] = React.useState<Position>({left: 0, opacity: 0, height: 0, width: 0})
     const [tabRefs, setTabRefs] = useState<RefObject<HTMLButtonElement>[]>([]);
-
+    const t = useTranslations("theexperience")
     const locale = useLocale() as keyof Lang;
 
     const containerVariants = {
@@ -69,7 +69,7 @@ const TheExperience: FC = () => {
 
     return (
         <div className="flex flex-col gap-8 text-stone-700 dark:text-stone-200">
-            <span className="font-playfairDisplay"><FadeDown text="Experience & Studies"/></span>
+           <FadeDown className="font-playfairDisplay" text={t("title")}/>
             <motion.div
                 className="flex flex-col gap-5 border-2 border-stone-600 rounded-xl p-3 shadow-lg overflow-hidden dark:border-stone-700"
                 initial="hidden"

@@ -80,7 +80,7 @@ const SideBar: React.FC<SideBarProps> = ({sideBar = false, setSideBar}) => {
                             exit={{opacity: 0}}
                             transition={{type: "spring", bounce: 0, duration: 0.2}}
                             onClick={() => setSideBar(false)}
-                            className="fixed inset-0 bg-black bg-opacity-50"
+                            className="fixed inset-0 bg-black bg-opacity-50 z-[49]"
                         />
                     </>
                 )

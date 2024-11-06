@@ -1,6 +1,7 @@
 import React from "react";
 import TheHero from "@/components/organisms/TheHero";
 import TheExperience from "@/components/organisms/TheExperience";
+import TheProjects from "@/components/organisms/TheProjects";
 
 export default async function Home() {
     return (
@@ -14,8 +15,8 @@ export default async function Home() {
                     <TheExperience/>
                 </section>
                 <section id="projects"
-                         className="h-screen text-black dark:text-white flex items-center justify-center">
-                    <h2 className="text-3xl">Projects Section</h2>
+                         className="h-screen text-black dark:text-white">
+                    <TheProjects/>
                 </section>
                 <section id="contact"
                          className="h-screen text-black dark:text-white flex items-center justify-center">

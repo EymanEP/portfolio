@@ -113,7 +113,7 @@ const InfoItem: FC<InfoItemProps> = (
                                                className="object-contain w-full h-full"/>
                                     </div>
                                     <div className="flex flex-col justify-around">
-                                        <p className="px-2 w-fit font-geistMono tracking-tighter text-sm bg-stone-200 rounded-full text-stone-700 dark:bg-stone-700 dark:text-stone-200">{date}</p>
+                                        <p className="px-2 w-fit font-geistVF tracking-tighter text-sm bg-stone-200 rounded-full text-stone-700 dark:bg-stone-700 dark:text-stone-200">{date}</p>
                                         <h3 className="font-geistVF font-bold text-2xl tracking-tighter">{place}</h3>
                                     </div>
                                 </motion.div>
