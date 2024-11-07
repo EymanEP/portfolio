@@ -8,12 +8,13 @@ export interface Technology {
 }
 
 export interface Project {
-  image: string;
+  id: string;
+  images: string[];
   title: string;
   shortDescription: string;
   description: string;
   githubLink: string;
+  driveLink?: string;
   deploymentLink: string;
   type: ProjectType;
-  technologies: Technology[];
 }

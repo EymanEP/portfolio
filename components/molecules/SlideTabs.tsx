@@ -3,6 +3,7 @@ import {useTranslations} from "next-intl";
 import Cursor from "@/components/atoms/Cursor";
 import Position from "@/interfaces/Position";
 import NavbarTabs from "@/data/NavbarTabs";
+import {usePathname, useRouter} from "next/navigation";
 
 /**
  * Contains all the Tabs with the links
@@ -56,12 +57,21 @@ interface TabProps {
  */
 const Tab: React.FC<TabProps> = ({ label, link, setPosition }) => {
   const ref = React.useRef<HTMLAnchorElement>(null);
+  const pathname = usePathname();
+  const router = useRouter();
+
   const handleClick = (e: React.MouseEvent<HTMLAnchorElement, MouseEvent>) => {
     if (link.startsWith("#")) {
       e.preventDefault();
-      const targetElement = document.querySelector(link);
-      if (!targetElement) return;
-      targetElement.scrollIntoView({ behavior: "smooth" });
+      if (pathname === "/en" || pathname === "/es") {
+        const targetElement = document.querySelector(link);
+        if (!targetElement) return;
+        console.log("homepage");
+        targetElement.scrollIntoView({ behavior: "smooth" });
+      } else {
+        console.log("other page");
+        router.push(`/${link}`);
+      }
     }
   };
   return (

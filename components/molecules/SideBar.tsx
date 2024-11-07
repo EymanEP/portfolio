@@ -5,6 +5,7 @@ import { AnimatePresence, motion } from "framer-motion";
 import { ChevronRight, XIcon } from "lucide-react";
 import { useTranslations } from "next-intl";
 import NavbarTabs from "@/data/NavbarTabs";
+import { usePathname, useRouter } from "next/navigation";
 
 type EventAnchorType = React.MouseEvent<HTMLAnchorElement, MouseEvent>;
 
@@ -15,13 +16,23 @@ interface SideBarProps {
 
 const SideBar: React.FC<SideBarProps> = ({ sideBar = false, setSideBar }) => {
   const t = useTranslations("navbar.links");
+  const pathname = usePathname();
+  const router = useRouter();
+
   const handleAnchorClick = (e: EventAnchorType, link: string) => {
     setSideBar(false);
+
     if (link.startsWith("#")) {
       e.preventDefault();
-      const targetElement = document.querySelector(link);
-      if (!targetElement) return;
-      targetElement.scrollIntoView({ behavior: "smooth" });
+      if (pathname === "/en" || pathname === "/es") {
+        const targetElement = document.querySelector(link);
+        if (!targetElement) return;
+        console.log("homepage");
+        targetElement.scrollIntoView({ behavior: "smooth" });
+      } else {
+        console.log("other page");
+        router.push(`/${link}`);
+      }
     }
   };
   return (

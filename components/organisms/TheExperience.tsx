@@ -84,7 +84,7 @@ const TheExperience: FC = () => {
     <div className="flex flex-col gap-8 text-stone-700 dark:text-stone-200">
       <FadeDown className="font-playfairDisplay" text={t("title")} />
       <motion.div
-        className="flex flex-col gap-5 border-2 border-stone-600 rounded-xl p-3 shadow-lg overflow-hidden dark:border-stone-700"
+        className="flex flex-col gap-5 border-2 border-stone-600 rounded-lg p-3 shadow-lg overflow-hidden dark:border-stone-700"
         initial="hidden"
         whileInView="visible"
         viewport={{ once: true, amount: "all" }}
