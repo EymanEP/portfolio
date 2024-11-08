@@ -1,26 +1,33 @@
 import { Projects } from "@/data/Projects";
 import { FadeDown } from "@/components/ui/FadeDown";
 import { SwipeCarousel } from "@/components/molecules/SwipeCarousel";
-import {Button} from "@/components/ui/button";
+import { Button } from "@/components/ui/button";
 import Link from "next/link";
+import OutsideLinkButton from "@/components/atoms/OutsideLinkButton";
+import {ArrowLeft} from "lucide-react";
+import {useLocale, useTranslations} from "next-intl";
+import {Locale} from "@/i18n/routing";
 
-export default async function Page({
+export default function Page({
   params,
 }: {
-  params: Promise<{ slug: string }>;
+  params: { slug: string };
 }) {
-  const { slug } = await params;
+  const t = useTranslations("theprojects");
+  const locale = useLocale();
+  const { slug } = params;
   const projectExists = Projects.some((project) => project.id === slug);
   const project = Projects.find((project) => slug === project.id);
 
   if (!projectExists) return <p>Page not found</p>;
 
-  const paragraphs = project?.description.split("\n");
+  const paragraphs = project?.description[locale as Locale].split("\n");
+
 
   return (
     <div className="mt-20 flex flex-col h-full lg:items-center">
       <SwipeCarousel imgs={project!.images} />
-      <div className="px-6 md:px-24 lg:px-28 xl:max-w-[1100px] pb-10 flex flex-col gap-8 text-stone-800 dark:text-stone-200">
+      <div className="px-6 md:px-24 lg:px-28 xl:max-w-[1100px] pb-20 flex flex-col gap-8 text-stone-800 dark:text-stone-200">
         <FadeDown
           className="text-4xl font-playfairDisplay"
           text={project!.title}
@@ -29,13 +36,31 @@ export default async function Page({
           Type: {project?.type}
         </p>
         {paragraphs!.map((p, index) => (
-          <p key={index} className="font-geistMono tracking-tighter text-xl text-justify">
+          <p
+            key={index}
+            className="font-geistMono tracking-tighter text-xl text-justify"
+          >
             {p}
           </p>
         ))}
-        <Button className="w-fit">
-          <Link href="/">Go Back</Link>
-        </Button>
+        <div className="flex flex-row justify-between">
+          <Button className="w-fit flex flex-row gap-2 items-center self-start ">
+            <ArrowLeft/>
+            <Link href="/">{t("goback")} </Link>
+          </Button>
+          {project?.deploymentLink && (
+            <Button className="w-fit">{t("seedeployment")}</Button>
+          )}
+          {project?.githubLink ? (
+            <OutsideLinkButton link={project.githubLink}>
+              {t("seecode")}
+            </OutsideLinkButton>
+          ) : project?.driveLink ? (
+            <OutsideLinkButton link={project.driveLink}>
+              {t("seeproject")}
+            </OutsideLinkButton>
+          ) : null}
+        </div>
       </div>
     </div>
   );

@@ -8,6 +8,9 @@ import { FaGithub, FaGoogleDrive } from "react-icons/fa";
 import { motion } from "framer-motion";
 import { ArrowTopRightIcon } from "@radix-ui/react-icons";
 import { useRouter } from "next/navigation";
+import {Button} from "@/components/ui/button";
+import {useLocale, useTranslations} from "next-intl";
+import {Locale} from "@/i18n/routing";
 
 const TheProjects: FC = () => {
   const GRID_CONTAINER = {
@@ -15,9 +18,11 @@ const TheProjects: FC = () => {
     visible: { opacity: 1, transition: { staggerChildren: 1 } },
   };
 
+  const t = useTranslations("theprojects");
+
   return (
     <div className="flex flex-col gap-8 text-stone-700 dark:text-stone-200">
-      <FadeDown text={"Projects"} className="font-playfairDisplay" />
+      <FadeDown text={t("title")} className="font-playfairDisplay" />
       <motion.div
         variants={GRID_CONTAINER}
         intial={"hidden"}
@@ -35,6 +40,8 @@ const TheProjects: FC = () => {
 export default TheProjects;
 
 const Card: FC<{ project: Project; index: number }> = ({ project, index }) => {
+  const t = useTranslations("theprojects");
+  const locale = useLocale();
   const router = useRouter();
   const openLinkBlank = (link: string | undefined) => {
     if (!link) return;
@@ -57,14 +64,13 @@ const Card: FC<{ project: Project; index: number }> = ({ project, index }) => {
 
   return (
     <motion.div
-      onClick={() => openProject()}
       initial={"hidden"}
       whileInView={"visible"}
       viewport={{ once: true, amount: "all" }}
       whileTap={"tap"}
       whileHover={"hover"}
       variants={MAIN_CONTAINER_VARIANTS}
-      className="w-full h-full flex flex-col bg-white dark:bg-[#111D] drop-shadow-sm rounded-lg hover:cursor-pointer"
+      className="w-full h-full flex flex-col bg-white dark:bg-[#111D] drop-shadow-sm rounded-lg"
     >
       <div className="flex-1 w-full h-52 md:h-80 rounded-t-lg shadow-lg overflow-hidden relative">
         <div className="absolute flex flex-row justify-between w-full items-center z-20 text-white p-3">
@@ -76,7 +82,7 @@ const Card: FC<{ project: Project; index: number }> = ({ project, index }) => {
               <FaGoogleDrive onClick={() => openLinkBlank(project.driveLink)} />
             )}
           </div>
-          <span className="bg-white rounded-full p-1 text-black hover:cursor-pointer">
+          <span className="bg-white rounded-full p-1 text-black">
             <ArrowTopRightIcon className="text-3xl" />
           </span>
         </div>
@@ -89,7 +95,7 @@ const Card: FC<{ project: Project; index: number }> = ({ project, index }) => {
           className="object-cover w-full h-full"
         />
       </div>
-      <div className="flex-1 shadow-lg h-fit p-4 flex flex-col gap-2 rounded-b-lg justify-center">
+      <div className="flex-1 shadow-lg h-fit p-4 flex flex-col gap-2 rounded-b-lg justify-around">
         <div className="space-y-2">
           <p className="bg-amber-200 dark:bg-amber-400 dark:text-black w-fit px-2 rounded-full text-sm font-geistVF tracking-tighter">{project.type}</p>
           <FadeDown
@@ -98,8 +104,9 @@ const Card: FC<{ project: Project; index: number }> = ({ project, index }) => {
           />
         </div>
         <p className="font-geistMono tracking-tighter">
-          {project.shortDescription}
+          {project.shortDescription[locale as Locale]}
         </p>
+        <Button onClick={() => openProject()}>{t("seemore")}</Button>
       </div>
     </motion.div>
   );

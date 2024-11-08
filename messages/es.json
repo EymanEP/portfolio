@@ -25,5 +25,13 @@
   },
   "theexperience": {
     "title": "Experiencia y Estudios"
+  },
+  "theprojects": {
+    "title": "Proyectos",
+    "seemore": "Ver más",
+    "goback": "Volver",
+    "seecode": "Ver el código",
+    "seedeployment": "Ver la página desplegada",
+    "seeproject": "Ver el proyecto"
   }
 }
