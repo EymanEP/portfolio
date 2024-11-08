@@ -35,5 +35,9 @@
     "seecode": "See the code",
     "seedeployment": "See the deployed page",
     "seeproject": "See the project"
+  },
+  "thecertifications": {
+    "title": "Certifications",
+    "description": "These are some of my certifications obtained from different courses I have completed"
   }
 }

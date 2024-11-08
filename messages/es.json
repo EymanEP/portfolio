@@ -35,5 +35,9 @@
     "seecode": "Ver el código",
     "seedeployment": "Ver la página desplegada",
     "seeproject": "Ver el proyecto"
+  },
+  "thecertifications": {
+    "title": "Certificados",
+    "description": "Estos son algunos de los certificados obtenidos en diferentes cursos."
   }
 }

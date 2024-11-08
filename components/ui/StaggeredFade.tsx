@@ -22,6 +22,7 @@ export default function StaggeredFade({
     <motion.h1
       initial="hidden"
       whileInView="visible"
+      viewport={{ once: true, amount: "all" }}
       className={clsx("font-bold drop-shadow-sm", className)}
     >
       {words.map((word, i) => (
