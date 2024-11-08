@@ -5,13 +5,13 @@ import { Button } from "@/components/ui/button";
 import Link from "next/link";
 import OutsideLinkButton from "@/components/atoms/OutsideLinkButton";
 import { ArrowLeft } from "lucide-react";
-import {Locale} from "@/i18n/routing";
-import {getLocale, getTranslations} from "next-intl/server";
+import { Locale } from "@/i18n/routing";
+import { getLocale, getTranslations } from "next-intl/server";
 
 export default async function Page({
   params,
 }: {
-  params: Promise<{slug: string}>;
+  params: Promise<{ slug: string }>;
 }) {
   const t = await getTranslations("theprojects");
   const locale = await getLocale();
@@ -19,7 +19,12 @@ export default async function Page({
   const projectExists = Projects.some((project) => project.id === slug);
   const project = Projects.find((project) => slug === project.id);
 
-  if (!projectExists) return <p>Page not found</p>;
+  if (!projectExists)
+    return (
+      <div className="flex h-dvh w-dvw bg-stone-50 text-stone-700 dark:bg-black dark:text-stone-200 items-center justify-center text-5xl font-playfairDisplay tracking-tighter">
+        404 | Page not found
+      </div>
+    );
 
   const paragraphs = project?.description[locale as Locale].split("\n");
 
