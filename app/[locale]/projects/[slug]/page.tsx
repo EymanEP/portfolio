@@ -37,7 +37,7 @@ export default async function Page({
         {paragraphs!.map((p, index) => (
           <p
             key={index}
-            className="font-geistMono tracking-tighter text-xl text-justify"
+            className="font-geistMono tracking-tighter leading-tight text-xl text-justify"
           >
             {p}
           </p>
