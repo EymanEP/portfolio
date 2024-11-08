@@ -39,5 +39,11 @@
   "thecertifications": {
     "title": "Certificados",
     "description": "Estos son algunos de los certificados obtenidos en diferentes cursos."
+  },
+  "theabout": {
+    "title": "Sobre mí",
+    "description": "Aquí puedes aprender más sobre mí.",
+    "paragraph": "Soy desarrollador web, nacido en Bulgaria y residente en España.\nMi interés por la tecnología empezó a los 15 años, cuando decidí instalar Linux en lugar de Windows, y desde entonces no he parado de aprender. Actualmente, trabajo en el desarrollo web utilizando tecnologías como React, Vue y Angular en el frontend, y Spring Boot en el backend.\nEn mi tiempo libre, me gusta ir al gimnasio, montar en moto y jugar a videojuegos.\nSiempre estoy abierto a aprender nuevas tecnologías y mejorar las que ya conozco.\nSi te interesa hablar o colaborar, no dudes en contactarme.",
+    "contact": "Contact me"
   }
 }

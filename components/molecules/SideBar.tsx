@@ -27,10 +27,8 @@ const SideBar: React.FC<SideBarProps> = ({ sideBar = false, setSideBar }) => {
       if (pathname === "/en" || pathname === "/es") {
         const targetElement = document.querySelector(link);
         if (!targetElement) return;
-        console.log("homepage");
         targetElement.scrollIntoView({ behavior: "smooth" });
       } else {
-        console.log("other page");
         router.push(`/${link}`);
       }
     }
