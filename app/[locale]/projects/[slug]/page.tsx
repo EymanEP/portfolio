@@ -21,7 +21,7 @@ export default async function Page({
 
   if (!projectExists)
     return (
-      <div className="flex h-dvh w-dvw bg-stone-50 text-stone-700 dark:bg-black dark:text-stone-200 items-center justify-center text-5xl font-playfairDisplay tracking-tighter">
+      <div className="text-center flex h-dvh w-dvw bg-stone-50 text-stone-700 dark:bg-black dark:text-stone-200 items-center justify-center text-5xl font-playfairDisplay tracking-tighter">
         404 | Page not found
       </div>
     );
