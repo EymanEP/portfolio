@@ -4,25 +4,24 @@ import { SwipeCarousel } from "@/components/molecules/SwipeCarousel";
 import { Button } from "@/components/ui/button";
 import Link from "next/link";
 import OutsideLinkButton from "@/components/atoms/OutsideLinkButton";
-import {ArrowLeft} from "lucide-react";
-import {useLocale, useTranslations} from "next-intl";
+import { ArrowLeft } from "lucide-react";
 import {Locale} from "@/i18n/routing";
+import {getLocale, getTranslations} from "next-intl/server";
 
-export default function Page({
+export default async function Page({
   params,
 }: {
-  params: { slug: string };
+  params: Promise<{slug: string}>;
 }) {
-  const t = useTranslations("theprojects");
-  const locale = useLocale();
-  const { slug } = params;
+  const t = await getTranslations("theprojects");
+  const locale = await getLocale();
+  const { slug } = await params;
   const projectExists = Projects.some((project) => project.id === slug);
   const project = Projects.find((project) => slug === project.id);
 
   if (!projectExists) return <p>Page not found</p>;
 
   const paragraphs = project?.description[locale as Locale].split("\n");
-
 
   return (
     <div className="mt-20 flex flex-col h-full lg:items-center">
@@ -45,7 +44,7 @@ export default function Page({
         ))}
         <div className="flex flex-row justify-between">
           <Button className="w-fit flex flex-row gap-2 items-center self-start ">
-            <ArrowLeft/>
+            <ArrowLeft />
             <Link href="/">{t("goback")} </Link>
           </Button>
           {project?.deploymentLink && (
