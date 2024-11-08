@@ -8,9 +8,9 @@ import { FaGithub, FaGoogleDrive } from "react-icons/fa";
 import { motion } from "framer-motion";
 import { ArrowTopRightIcon } from "@radix-ui/react-icons";
 import { useRouter } from "next/navigation";
-import {Button} from "@/components/ui/button";
-import {useLocale, useTranslations} from "next-intl";
-import {Locale} from "@/i18n/routing";
+import { Button } from "@/components/ui/button";
+import { useLocale, useTranslations } from "next-intl";
+import { Locale } from "@/i18n/routing";
 import Description from "@/components/atoms/Description";
 
 const TheProjects: FC = () => {
@@ -68,7 +68,7 @@ const Card: FC<{ project: Project; index: number }> = ({ project, index }) => {
     <motion.div
       initial={"hidden"}
       whileInView={"visible"}
-      viewport={{ once: true, amount: "all" }}
+      viewport={{ once: true, amount: 0.5 }}
       whileTap={"tap"}
       whileHover={"hover"}
       variants={MAIN_CONTAINER_VARIANTS}
@@ -99,7 +99,9 @@ const Card: FC<{ project: Project; index: number }> = ({ project, index }) => {
       </div>
       <div className="flex-1 shadow-lg h-fit p-4 flex flex-col gap-2 rounded-b-lg justify-around">
         <div className="space-y-2">
-          <p className="bg-amber-200 dark:bg-amber-400 dark:text-black w-fit px-2 rounded-full text-sm font-geistVF tracking-tighter">{project.type}</p>
+          <p className="bg-amber-200 dark:bg-amber-400 dark:text-black w-fit px-2 rounded-full text-sm font-geistVF tracking-tighter">
+            {project.type}
+          </p>
           <FadeDown
             text={project.title}
             className="font-playfairDisplay text-base"

@@ -85,46 +85,48 @@ const TheExperience: FC = () => {
     <div className="flex flex-col gap-8 text-stone-700 dark:text-stone-200">
       <FadeDown className="font-playfairDisplay" text={t("title")} />
       <Description sentence={t("description")} />
-      <motion.div
-        className="flex flex-col gap-5 border-2 border-stone-600 rounded-lg p-3 shadow-lg overflow-hidden dark:border-stone-700"
-        initial="hidden"
-        whileInView="visible"
-        viewport={{ once: true, amount: "all" }}
-        variants={containerVariants}
-        transition={{ duration: 0.6, ease: "easeInOut", delay: 0.1 }}
-      >
-        <div className="relative font-geistMono flex flex-row items-center justify-around">
-          {tabs.map((item, index) => (
-            <Tab
-              key={index}
-              ref={tabRefs[index]}
-              setContentFn={setContent}
-              value={item.value}
-              label={item.label}
-              isActive={content === item.value}
+      <div className="min-h-[400px]">
+        <motion.div
+          className="flex flex-col gap-5 border-2 border-stone-600 rounded-lg p-3 shadow-lg overflow-hidden dark:border-stone-700"
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true, amount: 0.5 }}
+          variants={containerVariants}
+          transition={{ duration: 0.6, ease: "easeInOut", delay: 0.1 }}
+        >
+          <div className="relative font-geistMono flex flex-row items-center justify-around">
+            {tabs.map((item, index) => (
+              <Tab
+                key={index}
+                ref={tabRefs[index]}
+                setContentFn={setContent}
+                value={item.value}
+                label={item.label}
+                isActive={content === item.value}
+              />
+            ))}
+            <Cursor
+              position={position}
+              className="bg-black dark:bg-white rounded-lg "
             />
-          ))}
-          <Cursor
-            position={position}
-            className="bg-black dark:bg-white rounded-lg "
-          />
-        </div>
-        <AnimatePresence mode="wait">
-          <motion.div
-            className="flex flex-col gap-5"
-            key={content}
-            initial={{ opacity: 0, maxHeight: 0 }}
-            animate={{ opacity: 1, maxHeight: "500px" }}
-            exit={{ opacity: 0, maxHeight: 0 }}
-            transition={{
-              duration: 0.6,
-              ease: "easeInOut",
-              staggerChildren: 0.5,
-              startDelay: 0.15,
-            }}
-          >
-            {ExperienceStudiesInfo.filter((item) => item.type === content).map(
-              (item, index) => (
+          </div>
+          <AnimatePresence mode="wait">
+            <motion.div
+              className="flex flex-col gap-5"
+              key={content}
+              initial={{ opacity: 0, maxHeight: 0 }}
+              animate={{ opacity: 1, maxHeight: "500px" }}
+              exit={{ opacity: 0, maxHeight: 0 }}
+              transition={{
+                duration: 0.6,
+                ease: "easeInOut",
+                staggerChildren: 0.5,
+                startDelay: 0.15,
+              }}
+            >
+              {ExperienceStudiesInfo.filter(
+                (item) => item.type === content,
+              ).map((item, index) => (
                 <InfoItem
                   key={item.id + index}
                   title={item.title[locale]}
@@ -134,11 +136,11 @@ const TheExperience: FC = () => {
                   description={item.description}
                   imgSrc={item.imgSrc}
                 />
-              ),
-            )}
-          </motion.div>
-        </AnimatePresence>
-      </motion.div>
+              ))}
+            </motion.div>
+          </AnimatePresence>
+        </motion.div>
+      </div>
     </div>
   );
 };
