@@ -39,5 +39,11 @@
   "thecertifications": {
     "title": "Certifications",
     "description": "These are some of my certifications obtained from different courses I have completed"
+  },
+  "theabout": {
+    "title": "About me",
+    "description": "Here you can find out more about me.",
+    "paragraph": "I'm a web developer based in Spain, originally from Bulgaria.\nMy journey began at 15 when I switched to Linux from Windows and fell in love with technology. Since then, I've pursued a career in web development and currently work with frontend frameworks like React, Vue, and Angular, as well as backend technologies like Spring Boot.\nOutside of work, I enjoy going to the gym, riding motorcycles, playing games, and going out with friends.\nI'm always eager to learn new tools or refine my existing skills.\nFeel free to reach out if you'd like to connect or collaborate!",
+    "contact": "Contacta conmigo"
   }
 }

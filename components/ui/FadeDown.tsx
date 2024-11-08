@@ -5,12 +5,12 @@ import {twMerge} from "tailwind-merge";
 export function FadeDown({text, className}: { text: string, className?: string }) {
     const FADE_DOWN_ANIMATION_VARIANTS = {
         hidden: {opacity: 0, y: -10},
-        show: {opacity: 1, y: 0, transition: {type: "spring"}},
+        show: {opacity: 1, y: 0, transition: {type: "spring", delay: 1}},
     };
     return (
         <motion.div
             initial="hidden"
-            animate="show"
+            whileInView="show"
             viewport={{once: true}}
             variants={{
                 hidden: {},

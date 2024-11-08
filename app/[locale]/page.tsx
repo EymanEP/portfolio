@@ -3,6 +3,7 @@ import TheHero from "@/components/organisms/TheHero";
 import TheExperience from "@/components/organisms/TheExperience";
 import TheProjects from "@/components/organisms/TheProjects";
 import TheCertifications from "@/components/organisms/TheCertifications";
+import TheAbout from "@/components/organisms/TheAbout";
 
 export default async function Home() {
   return (
@@ -31,6 +32,12 @@ export default async function Home() {
           className="flex flex-col justify-center"
         >
           <TheCertifications />
+        </section>
+        <section
+          id="aboutme"
+          className="flex flex-col justify-center"
+        >
+          <TheAbout />
         </section>
       </div>
     </div>
