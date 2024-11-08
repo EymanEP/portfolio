@@ -2,34 +2,35 @@ import React from "react";
 import TheHero from "@/components/organisms/TheHero";
 import TheExperience from "@/components/organisms/TheExperience";
 import TheProjects from "@/components/organisms/TheProjects";
+import TheCertifications from "@/components/organisms/TheCertifications";
 
 export default async function Home() {
   return (
-    <div className="xl:flex justify-center">
+    <div className="xl:flex justify-center pb-32">
       <div className="px-6 md:px-24 lg:px-28 xl:max-w-[1100px] flex flex-col gap-20">
         <section
           id="home"
-          className="h-screen text-black flex flex-col justify-center dark:text-white"
+          className="h-screen flex flex-col justify-center"
         >
           <TheHero />
         </section>
         <section
           id="experience-studies"
-          className="text-black flex flex-col justify-center dark:text-white"
+          className="flex flex-col"
         >
           <TheExperience />
         </section>
         <section
           id="projects"
-          className="flex flex-col justify-center text-black dark:text-white"
+          className="flex flex-col justify-center"
         >
           <TheProjects />
         </section>
         <section
-          id="contact"
-          className="h-screen text-black dark:text-white flex items-center justify-center"
+          id="certifications"
+          className="flex flex-col justify-center"
         >
-          <h2 className="text-3xl">Contact Section</h2>
+          <TheCertifications />
         </section>
       </div>
     </div>

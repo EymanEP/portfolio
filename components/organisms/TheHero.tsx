@@ -50,7 +50,7 @@ const TheHero: React.FC = () => {
   };
 
   return (
-    <div className="flex flex-col justify-between divide-y-4 lg:flex-row lg:divide-y-0 lg:divide-x-4">
+    <div className="flex flex-col justify-between divide-y-4 lg:flex-row lg:divide-y-0 lg:divide-x-4 text-stone-700 dark:text-stone-200">
       <div className="flex flex-col gap-5 py-4 lg:py-0 flex-1 lg:pr-8">
         <div className="flex flex-row justify-between lg:justify-around lg:gap-5">
           <Avatar src="/avatar.jpg" alt="Eyman Pashaliev photo" />
