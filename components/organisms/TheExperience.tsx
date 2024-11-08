@@ -10,6 +10,7 @@ import ExperienceStudiesInfo from "@/data/ExperienceStudiesInfo";
 import InfoItem from "@/components/molecules/InfoItem";
 import {useLocale, useTranslations} from "next-intl";
 import Lang from "@/interfaces/Lang";
+import Description from "@/components/atoms/Description";
 
 /**
  * Content state sets the content to display
@@ -83,6 +84,7 @@ const TheExperience: FC = () => {
   return (
     <div className="flex flex-col gap-8 text-stone-700 dark:text-stone-200">
       <FadeDown className="font-playfairDisplay" text={t("title")} />
+      <Description sentence={t("description")} />
       <motion.div
         className="flex flex-col gap-5 border-2 border-stone-600 rounded-lg p-3 shadow-lg overflow-hidden dark:border-stone-700"
         initial="hidden"

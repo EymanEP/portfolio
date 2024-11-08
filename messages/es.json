@@ -24,10 +24,12 @@
     "aboutbtn": "Más sobre mí"
   },
   "theexperience": {
-    "title": "Experiencia y Estudios"
+    "title": "Experiencia y Estudios",
+    "description": "Estas son mis experiencias laborales y mis estudios"
   },
   "theprojects": {
     "title": "Proyectos",
+    "description": "Estos son algunos de mis proyectos. Si quieres verlos más en detalle dale al botón de ver más o haz click en uno de los iconos superiores para ver el código",
     "seemore": "Ver más",
     "goback": "Volver",
     "seecode": "Ver el código",

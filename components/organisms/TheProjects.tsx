@@ -11,6 +11,7 @@ import { useRouter } from "next/navigation";
 import {Button} from "@/components/ui/button";
 import {useLocale, useTranslations} from "next-intl";
 import {Locale} from "@/i18n/routing";
+import Description from "@/components/atoms/Description";
 
 const TheProjects: FC = () => {
   const GRID_CONTAINER = {
@@ -23,6 +24,7 @@ const TheProjects: FC = () => {
   return (
     <div className="flex flex-col gap-8 text-stone-700 dark:text-stone-200">
       <FadeDown text={t("title")} className="font-playfairDisplay" />
+      <Description sentence={t("description")} />
       <motion.div
         variants={GRID_CONTAINER}
         intial={"hidden"}
