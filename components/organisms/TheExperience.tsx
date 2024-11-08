@@ -1,5 +1,5 @@
 "use client";
-import React, {createRef, FC, forwardRef, RefObject, useEffect, useMemo, useState} from "react";
+import React, {createRef, FC, forwardRef, RefObject, useEffect, useMemo, useState,} from "react";
 import {AnimatePresence, motion} from "framer-motion";
 import {FadeDown} from "@/components/ui/FadeDown";
 import {twMerge} from "tailwind-merge";
@@ -8,7 +8,7 @@ import Position from "@/interfaces/Position";
 import {ContentType} from "@/interfaces/ContentType";
 import ExperienceStudiesInfo from "@/data/ExperienceStudiesInfo";
 import InfoItem from "@/components/molecules/InfoItem";
-import {useLocale} from "next-intl";
+import {useLocale, useTranslations} from "next-intl";
 import Lang from "@/interfaces/Lang";
 
 /**
@@ -17,136 +17,154 @@ import Lang from "@/interfaces/Lang";
  * @constructor
  */
 const TheExperience: FC = () => {
-    const [content, setContent] = React.useState<ContentType>("experience");
-    const [position, setPosition] = React.useState<Position>({left: 0, opacity: 0, height: 0, width: 0})
-    const [tabRefs, setTabRefs] = useState<RefObject<HTMLButtonElement>[]>([]);
+  const [content, setContent] = React.useState<ContentType>("experience");
+  const [position, setPosition] = React.useState<Position>({
+    left: 0,
+    opacity: 0,
+    height: 0,
+    width: 0,
+  });
+  const [tabRefs, setTabRefs] = useState<RefObject<HTMLButtonElement>[]>([]);
+  const t = useTranslations("theexperience");
+  const locale = useLocale() as keyof Lang;
 
-    const locale = useLocale() as keyof Lang;
+  const containerVariants = {
+    hidden: { opacity: 0, maxHeight: 0 },
+    visible: {
+      opacity: 1,
+      maxHeight: "100vh",
+    },
+  };
 
-    const containerVariants = {
-        hidden: {opacity: 0, maxHeight: 0},
-        visible: {
-            opacity: 1,
-            maxHeight: "100vh",
-        },
-    }
+  const tabs = useMemo(
+    () => [
+      { value: "experience" as ContentType, label: "Experience" },
+      { value: "studies" as ContentType, label: "Studies" },
+    ],
+    [],
+  );
 
-    const tabs = useMemo(() => [
-        {value: "experience" as ContentType, label: "Experience"},
-        {value: "studies" as ContentType, label: "Studies"}
-    ], [])
+  // This sets the tabrefs to the tabs used in the component
+  useEffect(() => {
+    setTabRefs(tabs.map(() => createRef<HTMLButtonElement>()));
+  }, [tabs]);
 
-    // This sets the tabrefs to the tabs used in the component
-    useEffect(() => {
-        setTabRefs(tabs.map(() => createRef<HTMLButtonElement>()))
-    }, [tabs]);
+  /**
+   * UpdatePosition is used to change the position of the cursor to that of the active tab
+   */
+  const updatePosition = () => {
+    if (tabRefs.length === 0) return;
+    const activeTabRef = tabRefs[content === "experience" ? 0 : 1];
 
-    /**
-     * UpdatePosition is used to change the position of the cursor to that of the active tab
-     */
-    const updatePosition = () => {
-        if (tabRefs.length === 0) return;
-        const activeTabRef = tabRefs[content === "experience" ? 0 : 1]
+    if (!activeTabRef || !activeTabRef.current) return;
 
-        if (!activeTabRef || !activeTabRef.current) return;
+    const { width, height } = activeTabRef.current.getBoundingClientRect();
+    setPosition({
+      left: activeTabRef.current.offsetLeft,
+      width,
+      height,
+      opacity: 1,
+    });
+  };
 
-        const {width, height} = activeTabRef.current.getBoundingClientRect();
-        setPosition({left: activeTabRef.current.offsetLeft, width, height, opacity: 1})
-    }
+  /**
+   * This useEffect is in charge of changing the position of the Cursor everytime the content changes
+   */
+  useEffect(() => {
+    updatePosition();
 
-    /**
-     * This useEffect is in charge of changing the position of the Cursor everytime the content changes
-     */
-    useEffect(() => {
-        updatePosition();
+    const handleResize = () => updatePosition();
 
-        const handleResize = () => updatePosition();
+    window.addEventListener("resize", handleResize);
 
-        window.addEventListener("resize", handleResize);
+    return () => window.removeEventListener("resize", handleResize);
+  }, [content, tabRefs]);
 
-        return () => window.removeEventListener("resize", handleResize);
-    }, [content, tabRefs]);
-
-    return (
-        <div className="flex flex-col gap-8 text-stone-700 dark:text-stone-200">
-            <span className="font-playfairDisplay"><FadeDown text="Experience & Studies"/></span>
-            <motion.div
-                className="flex flex-col gap-5 border-2 border-stone-600 rounded-xl p-3 shadow-lg overflow-hidden dark:border-stone-700"
-                initial="hidden"
-                whileInView="visible"
-                viewport={{once: true, amount: "all"}}
-                variants={containerVariants}
-                transition={{duration: 0.6, ease: "easeInOut", delay: .1}}
-            >
-                <div className="relative font-geistMono flex flex-row items-center justify-around">
-                    {
-                        tabs.map((item, index) => (
-                            <Tab key={index}
-                                 ref={tabRefs[index]}
-                                 setContentFn={setContent}
-                                 value={item.value}
-                                 label={item.label}
-                                 isActive={content === item.value}
-                            />
-                        ))
-                    }
-                    <Cursor
-                        position={position}
-                        className="bg-black dark:bg-white rounded-lg "
-                    />
-                </div>
-                <AnimatePresence mode="wait">
-                    <motion.div
-                        className="flex flex-col gap-5"
-                        key={content}
-                        initial={{opacity: 0, maxHeight: 0}}
-                        animate={{opacity: 1, maxHeight: "500px"}}
-                        exit={{opacity: 0, maxHeight: 0}}
-                        transition={{duration: 0.6, ease: "easeInOut", staggerChildren: 0.5, startDelay: 0.15}}
-                    >
-                        {
-                            ExperienceStudiesInfo
-                                .filter(item => item.type === content)
-                                .map((item, index) => (
-                                    <InfoItem key={item.id + index}
-                                              title={item.title[locale]}
-                                              place={item.place}
-                                              date={item.date[locale]}
-                                              index={index}
-                                              description={item.description}
-                                              imgSrc={item.imgSrc}
-                                    />
-                                ))
-                        }
-                    </motion.div>
-                </AnimatePresence>
-            </motion.div>
+  return (
+    <div className="flex flex-col gap-8 text-stone-700 dark:text-stone-200">
+      <FadeDown className="font-playfairDisplay" text={t("title")} />
+      <motion.div
+        className="flex flex-col gap-5 border-2 border-stone-600 rounded-lg p-3 shadow-lg overflow-hidden dark:border-stone-700"
+        initial="hidden"
+        whileInView="visible"
+        viewport={{ once: true, amount: "all" }}
+        variants={containerVariants}
+        transition={{ duration: 0.6, ease: "easeInOut", delay: 0.1 }}
+      >
+        <div className="relative font-geistMono flex flex-row items-center justify-around">
+          {tabs.map((item, index) => (
+            <Tab
+              key={index}
+              ref={tabRefs[index]}
+              setContentFn={setContent}
+              value={item.value}
+              label={item.label}
+              isActive={content === item.value}
+            />
+          ))}
+          <Cursor
+            position={position}
+            className="bg-black dark:bg-white rounded-lg "
+          />
         </div>
-    )
-}
+        <AnimatePresence mode="wait">
+          <motion.div
+            className="flex flex-col gap-5"
+            key={content}
+            initial={{ opacity: 0, maxHeight: 0 }}
+            animate={{ opacity: 1, maxHeight: "500px" }}
+            exit={{ opacity: 0, maxHeight: 0 }}
+            transition={{
+              duration: 0.6,
+              ease: "easeInOut",
+              staggerChildren: 0.5,
+              startDelay: 0.15,
+            }}
+          >
+            {ExperienceStudiesInfo.filter((item) => item.type === content).map(
+              (item, index) => (
+                <InfoItem
+                  key={item.id + index}
+                  title={item.title[locale]}
+                  place={item.place}
+                  date={item.date[locale]}
+                  index={index}
+                  description={item.description}
+                  imgSrc={item.imgSrc}
+                />
+              ),
+            )}
+          </motion.div>
+        </AnimatePresence>
+      </motion.div>
+    </div>
+  );
+};
 
 export default TheExperience;
 
 /**
  * Component used to display the Tabs for navigation
  */
-const Tab = forwardRef<HTMLButtonElement, {
-    setContentFn: (val: ContentType) => void,
-    value: ContentType,
-    label: string,
-    isActive?: boolean,
-}>(function Tab({setContentFn, value, label, isActive}, ref) {
-    return (
-        <button
-            ref={ref}
-            onClick={() => setContentFn(value)}
-            className={
-                twMerge("px-4 py-1 w-full h-full z-10 text-stone-700 dark:text-stone-200",
-                    isActive && "font-bold text-stone-200 dark:text-stone-800")
-            }
-        >
-            {label}
-        </button>
-    )
-})
-
+const Tab = forwardRef<
+  HTMLButtonElement,
+  {
+    setContentFn: (val: ContentType) => void;
+    value: ContentType;
+    label: string;
+    isActive?: boolean;
+  }
+>(function Tab({ setContentFn, value, label, isActive }, ref) {
+  return (
+    <button
+      ref={ref}
+      onClick={() => setContentFn(value)}
+      className={twMerge(
+        "px-4 py-1 w-full h-full z-10 text-stone-700 dark:text-stone-200",
+        isActive && "font-bold text-stone-200 dark:text-stone-800",
+      )}
+    >
+      {label}
+    </button>
+  );
+});

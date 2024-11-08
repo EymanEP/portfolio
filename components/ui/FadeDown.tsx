@@ -1,7 +1,8 @@
-import clsx from "clsx";
+"use client";
 import {motion} from "framer-motion";
+import {twMerge} from "tailwind-merge";
 
-export function FadeDown({text}: { text: string }) {
+export function FadeDown({text, className}: { text: string, className?: string }) {
     const FADE_DOWN_ANIMATION_VARIANTS = {
         hidden: {opacity: 0, y: -10},
         show: {opacity: 1, y: 0, transition: {type: "spring"}},
@@ -21,7 +22,7 @@ export function FadeDown({text}: { text: string }) {
             }}
         >
             <motion.h1
-                className={clsx("tracking-tighter font-bold text-3xl")}
+                className={twMerge(className, "tracking-tighter font-bold text-3xl")}
                 variants={FADE_DOWN_ANIMATION_VARIANTS}
             >
                 {text}

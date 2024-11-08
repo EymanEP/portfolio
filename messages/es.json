@@ -22,5 +22,16 @@
     "aboutme": "Sobre mí",
     "aboutmedesc": "Soy un desarrollador web en busca de una oportunidad para perfeccionar mis habilidades de programación y aportar al trabajo en equipo. Sea en roles de frontend, backend o fullstack.",
     "aboutbtn": "Más sobre mí"
+  },
+  "theexperience": {
+    "title": "Experiencia y Estudios"
+  },
+  "theprojects": {
+    "title": "Proyectos",
+    "seemore": "Ver más",
+    "goback": "Volver",
+    "seecode": "Ver el código",
+    "seedeployment": "Ver la página desplegada",
+    "seeproject": "Ver el proyecto"
   }
 }
