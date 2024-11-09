@@ -9,6 +9,8 @@ import { getMessages } from "next-intl/server";
 import ScrollProgress from "@/components/atoms/ScrollProgress";
 import ReactLenis from "lenis/react";
 
+export const runtime = "edge";
+
 const jetBrainsMono = localFont({
   src: "../fonts/JetBrainsMono.ttf",
   variable: "--font-jetbrains-mono",
