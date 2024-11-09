@@ -18,7 +18,7 @@ export default function TheAbout() {
   };
 
   return (
-    <div className="flex flex-col text-stone-700 dark:text-stone-200 gap-5">
+    <div className="flex flex-col text-stone-700 dark:text-stone-200 gap-5 overflow-hidden">
       <FadeDown text={t("title")} className="font-playfairDisplay" />
       <Description sentence={t("description")} />
       <div className="grid grid-flow-row md:grid-flow-col gap-5 items-center">

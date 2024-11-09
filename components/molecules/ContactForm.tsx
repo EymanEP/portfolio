@@ -3,8 +3,20 @@ import { SubmitHandler, useForm } from "react-hook-form";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { Button } from "@/components/ui/button";
-import {EnvelopeClosedIcon, PaperPlaneIcon, PersonIcon, Pencil1Icon} from "@radix-ui/react-icons";
-import {useTranslations} from "next-intl";
+import {
+  CheckIcon,
+  Cross2Icon,
+  EnvelopeClosedIcon,
+  PaperPlaneIcon,
+  Pencil1Icon,
+  PersonIcon,
+} from "@radix-ui/react-icons";
+import { useTranslations } from "next-intl";
+import { useState } from "react";
+import emailjs from "@emailjs/browser";
+import { twMerge } from "tailwind-merge";
+
+type FormStateType = "notSent" | "sending" | "success" | "error";
 
 type FormValues = {
   name: string;
@@ -14,7 +26,8 @@ type FormValues = {
 };
 
 export default function ContactForm() {
-  const t = useTranslations("thecontact.form")
+  const t = useTranslations("thecontact.form");
+  const [formState, setFormState] = useState<FormStateType>("notSent");
   const {
     register,
     handleSubmit,
@@ -25,13 +38,45 @@ export default function ContactForm() {
   const onSubmit: SubmitHandler<FormValues> = async (data, e) => {
     e?.preventDefault();
     const { name, email, subject, message } = data;
-    console.log("Name: ", name);
-    console.log("Email: ", email);
-    console.log("Subject: ", subject);
-    console.log("Message: ", message);
+    setFormState("sending");
+    try {
+      const templateParams = {
+        name,
+        email,
+        subject,
+        message,
+      };
+      await emailjs.send(
+        process.env.NEXT_PUBLIC_EMAILJS_SERVICE_ID!,
+        process.env.NEXT_PUBLIC_EMAILJS_TEMPLATE_ID!,
+        templateParams,
+        process.env.NEXT_PUBLIC_EMAILJS_PUBLIC_KEY!,
+      );
 
-    reset();
+      setFormState("success");
+      reset();
+      setTimeout(() => setFormState("notSent"), 4000);
+    } catch (error) {
+      console.log(error);
+      setFormState("error");
+    }
   };
+
+  let buttonBg = "";
+  switch (formState) {
+    case "notSent":
+      buttonBg = "bg-black dark:bg-white";
+      break;
+    case "sending":
+      buttonBg = "bg-black dark:bg-white";
+      break;
+    case "success":
+      buttonBg = "bg-green-400 dark:bg-green-500";
+      break;
+    case "error":
+      buttonBg = "bg-red-400 dark:bg-red-500";
+      break;
+  }
 
   return (
     <form
@@ -135,8 +180,32 @@ export default function ContactForm() {
           </div>
         </div>
         <div>
-          <Button className="w-full lg:w-fit" type="submit">
-            {t("send")} <PaperPlaneIcon />
+          <Button
+            className={twMerge(
+              "w-full lg:w-fit overflow-hidden transition-colors duration-200",
+              buttonBg,
+            )}
+            type="submit"
+            disabled={formState === "sending"}
+          >
+            {formState === "notSent" && (
+              <span className="flex flex-row items-center gap-2">
+                {t("send")} <PaperPlaneIcon />
+              </span>
+            )}
+            {formState === "sending" && (
+              <p className="animate-pulse">{t("sending")}</p>
+            )}
+            {formState === "success" && (
+              <span className="flex flex-row items-center gap-2">
+                {t("success")} <CheckIcon />
+              </span>
+            )}
+            {formState === "error" && (
+              <span className="flex flex-row items-center gap-2">
+                {t("error")} <Cross2Icon />
+              </span>
+            )}
           </Button>
         </div>
       </div>

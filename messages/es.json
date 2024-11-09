@@ -48,7 +48,7 @@
   },
   "thecontact": {
     "title": "Contáctame",
-    "description": "Si quieres contactarme rellena el formulario de abajo y yo me encargaré de devolverte el mensaje en cuanto pueda",
+    "description": "Si quieres contactarme rellena el formulario de abajo y yo me encargaré de devolverte el mensaje en cuanto pueda. O también puedes contactarme directamente a epashaliev02@gmail.com",
     "form": {
       "required": "Obligatorio",
       "name": "Tu nombre",
@@ -61,7 +61,10 @@
       "errorsubject": "Asunto es un campo obligatorio",
       "message": "Escribe tu mensaje aquí",
       "errormessage": "Mensaje es obligatorio",
-      "send": "Enviar"
+      "send": "Enviar",
+      "sending": "Enviando...",
+      "success": "Enviado!",
+      "error": "Error :("
     }
   }
 }

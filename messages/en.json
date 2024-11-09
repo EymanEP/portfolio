@@ -48,7 +48,7 @@
   },
   "thecontact": {
     "title": "Contact me",
-    "description": "If you want to contact me you can fill the form below and I'll make sure to respond when I get the chance.",
+    "description": "If you want to contact me you can fill the form below and I'll make sure to respond when I get the chance. Or you cant send me directly an email to epashaliev02@gmail.com",
     "form": {
       "required": "Required",
       "name": "Your name",
@@ -61,7 +61,10 @@
       "errorsubject": "Please enter a subject",
       "message": "Enter your message here",
       "errormessage": "Please enter a message",
-      "send": "Send"
+      "send": "Send",
+      "sending": "Sending...",
+      "success": "Sent!",
+      "error": "Error :("
     }
   }
 }
