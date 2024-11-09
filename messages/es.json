@@ -1,0 +1,71 @@
+{
+  "page": {
+    "title": "Portfolio",
+    "desc": "Portfolio de Eyman Evgeniev"
+  },
+  "navbar": {
+    "menu": "Menú",
+    "links": {
+      "home": "Inicio",
+      "about": "Sobre mí",
+      "experience": "Experiencia y estudios",
+      "projects": "Proyectos",
+      "certifications": "Certificados",
+      "contact": "Contáctame"
+    }
+  },
+  "thehero": {
+    "developer": "Desarrollador web",
+    "location": "España, La Rioja",
+    "opentowork": "Buscando trabajo",
+    "working": "Actualmente trabajando",
+    "cv": "Curriculum",
+    "aboutme": "Sobre mí",
+    "aboutmedesc": "Soy un desarrollador web en busca de una oportunidad para perfeccionar mis habilidades de programación y aportar al trabajo en equipo. Sea en roles de frontend, backend o fullstack.",
+    "aboutbtn": "Más sobre mí"
+  },
+  "theexperience": {
+    "title": "Experiencia y Estudios",
+    "description": "Estas son mis experiencias laborales y mis estudios"
+  },
+  "theprojects": {
+    "title": "Proyectos",
+    "description": "Estos son algunos de mis proyectos. Si quieres verlos más en detalle dale al botón de ver más o haz click en uno de los iconos superiores para ver el código",
+    "seemore": "Ver más",
+    "goback": "Volver",
+    "seecode": "Ver el código",
+    "seedeployment": "Ver la página desplegada",
+    "seeproject": "Ver el proyecto"
+  },
+  "thecertifications": {
+    "title": "Certificados",
+    "description": "Estos son algunos de los certificados obtenidos en diferentes cursos."
+  },
+  "theabout": {
+    "title": "Sobre mí",
+    "description": "Aquí puedes aprender más sobre mí.",
+    "paragraph": "Soy desarrollador web, nacido en Bulgaria y residente en España.\nMi interés por la tecnología empezó a los 15 años, cuando decidí instalar Linux en lugar de Windows, y desde entonces no he parado de aprender. Actualmente, trabajo en el desarrollo web utilizando tecnologías como React, Vue y Angular en el frontend, y Spring Boot en el backend.\nEn mi tiempo libre, me gusta ir al gimnasio, montar en moto y jugar a videojuegos.\nSiempre estoy abierto a aprender nuevas tecnologías y mejorar las que ya conozco.\nSi te interesa hablar o colaborar, no dudes en contactarme.",
+    "contact": "Contact me"
+  },
+  "thecontact": {
+    "title": "Contáctame",
+    "description": "Si quieres contactarme rellena el formulario de abajo y yo me encargaré de devolverte el mensaje en cuanto pueda. O también puedes contactarme directamente a epashaliev02@gmail.com",
+    "form": {
+      "required": "Obligatorio",
+      "name": "Tu nombre",
+      "errorname": "Nombre es un campo obligatorio",
+      "lengthname": "Nombre tiene no tiene que contener más de 30 caracteres",
+      "email": "Tu email",
+      "erroremail": "Email es un campo obligatorio",
+      "invalidemail": "El email escrito es invalido",
+      "subject": "Asunto",
+      "errorsubject": "Asunto es un campo obligatorio",
+      "message": "Escribe tu mensaje aquí",
+      "errormessage": "Mensaje es obligatorio",
+      "send": "Enviar",
+      "sending": "Enviando...",
+      "success": "Enviado!",
+      "error": "Error :("
+    }
+  }
+}

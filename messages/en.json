@@ -1,0 +1,71 @@
+{
+  "page": {
+    "title": "Portfolio",
+    "desc": "Eyman Pashaliev's Portfolio"
+  },
+  "navbar": {
+    "menu": "Menu",
+    "links": {
+      "home": "Home",
+      "about": "About me",
+      "experience": "Experience & Studies",
+      "projects": "Projects",
+      "certifications": "Certifications",
+      "contact": "Contact me"
+    }
+  },
+  "thehero": {
+    "developer": "Web developer",
+    "location": "Spain, La Rioja",
+    "opentowork": "Open to work",
+    "working": "Currently working",
+    "cv": "Resume",
+    "aboutme": "About me",
+    "aboutmedesc": "Im a web developer in search of an oportunity to perfect my programming skills and contribute work in a team. I'm open to work as a frontend, backend or fullstack developer",
+    "aboutbtn": "More about me"
+  },
+  "theexperience": {
+    "title": "Experience & Studies",
+    "description": "These are my working experiences and my studies"
+  },
+  "theprojects": {
+    "title": "Projects",
+    "description": "These are some of my projects. If you want to see more about them you can click the 'see more' button or click one of the icons on the top side",
+    "seemore": "See more",
+    "goback": "Go back",
+    "seecode": "See the code",
+    "seedeployment": "See the deployed page",
+    "seeproject": "See the project"
+  },
+  "thecertifications": {
+    "title": "Certifications",
+    "description": "These are some of my certifications obtained from different courses I have completed"
+  },
+  "theabout": {
+    "title": "About me",
+    "description": "Here you can find out more about me.",
+    "paragraph": "I'm a web developer based in Spain, originally from Bulgaria.\nMy journey began at 15 when I switched to Linux from Windows and fell in love with technology. Since then, I've pursued a career in web development and currently work with frontend frameworks like React, Vue, and Angular, as well as backend technologies like Spring Boot.\nOutside of work, I enjoy going to the gym, riding motorcycles, playing games, and going out with friends.\nI'm always eager to learn new tools or refine my existing skills.\nFeel free to reach out if you'd like to connect or collaborate!",
+    "contact": "Contacta conmigo"
+  },
+  "thecontact": {
+    "title": "Contact me",
+    "description": "If you want to contact me you can fill the form below and I'll make sure to respond when I get the chance. Or you cant send me directly an email to epashaliev02@gmail.com",
+    "form": {
+      "required": "Required",
+      "name": "Your name",
+      "errorname": "Please enter your name",
+      "lengthname": "Name cant contain more than 30 characters",
+      "email": "Your email",
+      "erroremail": "Please enter your email",
+      "invalidemail": "Please enter a valid email address",
+      "subject": "Subject",
+      "errorsubject": "Please enter a subject",
+      "message": "Enter your message here",
+      "errormessage": "Please enter a message",
+      "send": "Send",
+      "sending": "Sending...",
+      "success": "Sent!",
+      "error": "Error :("
+    }
+  }
+}
