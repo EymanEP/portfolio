@@ -99,7 +99,7 @@ const Card: FC<{ project: Project; index: number }> = ({ project, index }) => {
       </div>
       <div className="flex-1 shadow-lg h-fit p-4 flex flex-col gap-2 rounded-b-lg justify-around">
         <div className="space-y-2">
-          <p className="bg-amber-200 dark:bg-amber-400 dark:text-black w-fit px-2 rounded-full text-sm font-geistVF tracking-tighter">
+          <p className="bg-blue-200 dark:bg-blue-400 dark:text-black w-fit px-2 rounded-full text-sm font-geistVF tracking-tighter">
             {project.type}
           </p>
           <FadeDown

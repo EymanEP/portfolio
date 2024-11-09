@@ -50,7 +50,7 @@ export default async function RootLayout({ children, params }: Props) {
     <html
       lang={locale}
       className="m-0 overflow-x-hidden"
-      suppressHydrationWarning
+      suppressHydrationWarning={true}
     >
       <body
         className={`${jetBrainsMono.variable} ${playfairDisplay.variable} 

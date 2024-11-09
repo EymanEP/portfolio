@@ -6,6 +6,7 @@ import { ChevronRight, XIcon } from "lucide-react";
 import { useTranslations } from "next-intl";
 import NavbarTabs from "@/data/NavbarTabs";
 import { usePathname, useRouter } from "next/navigation";
+import { scrollToHTMLElement } from "@/utils/scrollUtils";
 
 type EventAnchorType = React.MouseEvent<HTMLAnchorElement, MouseEvent>;
 
@@ -25,9 +26,7 @@ const SideBar: React.FC<SideBarProps> = ({ sideBar = false, setSideBar }) => {
     if (link.startsWith("#")) {
       e.preventDefault();
       if (pathname === "/en" || pathname === "/es") {
-        const targetElement = document.querySelector(link);
-        if (!targetElement) return;
-        targetElement.scrollIntoView({ behavior: "smooth" });
+        scrollToHTMLElement(link);
       } else {
         router.push(`/${link}`);
       }
