@@ -18,7 +18,7 @@ export default function TheAbout() {
   };
 
   return (
-    <div className="flex flex-col text-stone-700 dark:text-stone-200 gap-5">
+    <div className="flex flex-col text-stone-700 dark:text-stone-200 gap-5 overflow-hidden">
       <FadeDown text={t("title")} className="font-playfairDisplay" />
       <Description sentence={t("description")} />
       <div className="grid grid-flow-row md:grid-flow-col gap-5 items-center">
@@ -36,11 +36,11 @@ export default function TheAbout() {
             className="w-full h-full object-cover"
           />
         </motion.div>
-        <div className="font-geistMono tracking-tighter leading-tight space-y-4 flex-grow">
+        <div className="font-geistMono tracking-tighter leading-tight space-y-4 flex-grow text-stone-700 dark:text-stone-200">
           {paragraphs.map((paragraph, i) => (
             <motion.p initial={{ opacity: 0, x: 200}}
                       whileInView={{ opacity: 1, x: 0 }}
-                      viewport={{ once: true, amount: 0.5 }} key={i}>{paragraph}</motion.p>
+                      viewport={{ once: true }} key={i}>{paragraph}</motion.p>
           ))}
           <Button onClick={() => handleContactClick("#contact")}>
             {t("contact")}

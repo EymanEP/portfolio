@@ -45,5 +45,26 @@
     "description": "Here you can find out more about me.",
     "paragraph": "I'm a web developer based in Spain, originally from Bulgaria.\nMy journey began at 15 when I switched to Linux from Windows and fell in love with technology. Since then, I've pursued a career in web development and currently work with frontend frameworks like React, Vue, and Angular, as well as backend technologies like Spring Boot.\nOutside of work, I enjoy going to the gym, riding motorcycles, playing games, and going out with friends.\nI'm always eager to learn new tools or refine my existing skills.\nFeel free to reach out if you'd like to connect or collaborate!",
     "contact": "Contacta conmigo"
+  },
+  "thecontact": {
+    "title": "Contact me",
+    "description": "If you want to contact me you can fill the form below and I'll make sure to respond when I get the chance. Or you cant send me directly an email to epashaliev02@gmail.com",
+    "form": {
+      "required": "Required",
+      "name": "Your name",
+      "errorname": "Please enter your name",
+      "lengthname": "Name cant contain more than 30 characters",
+      "email": "Your email",
+      "erroremail": "Please enter your email",
+      "invalidemail": "Please enter a valid email address",
+      "subject": "Subject",
+      "errorsubject": "Please enter a subject",
+      "message": "Enter your message here",
+      "errormessage": "Please enter a message",
+      "send": "Send",
+      "sending": "Sending...",
+      "success": "Sent!",
+      "error": "Error :("
+    }
   }
 }
