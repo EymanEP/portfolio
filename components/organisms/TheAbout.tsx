@@ -6,16 +6,11 @@ import Description from "@/components/atoms/Description";
 import { Button } from "../ui/button";
 import Image from "next/image";
 import { motion } from "framer-motion";
+import { scrollToHTMLElement } from "@/utils/scrollUtils";
 
 export default function TheAbout() {
   const t = useTranslations("theabout");
   const paragraphs = t("paragraph").split("\n");
-
-  const handleContactClick = (link: string) => {
-    const targetElement = document.querySelector(link);
-    if (!targetElement) return;
-    targetElement.scrollIntoView({ behavior: "smooth" });
-  };
 
   return (
     <div className="flex flex-col text-stone-700 dark:text-stone-200 gap-5 overflow-hidden">
@@ -38,11 +33,16 @@ export default function TheAbout() {
         </motion.div>
         <div className="font-geistMono tracking-tighter leading-tight space-y-4 flex-grow text-stone-700 dark:text-stone-200">
           {paragraphs.map((paragraph, i) => (
-            <motion.p initial={{ opacity: 0, x: 200}}
-                      whileInView={{ opacity: 1, x: 0 }}
-                      viewport={{ once: true }} key={i}>{paragraph}</motion.p>
+            <motion.p
+              initial={{ opacity: 0, x: 200 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              viewport={{ once: true }}
+              key={i}
+            >
+              {paragraph}
+            </motion.p>
           ))}
-          <Button onClick={() => handleContactClick("#contact")}>
+          <Button onClick={() => scrollToHTMLElement("#contact")}>
             {t("contact")}
           </Button>
         </div>

@@ -2,18 +2,28 @@
 
 import React from "react";
 import Avatar from "@/components/atoms/Avatar";
-import {GitHubLogoIcon, LinkedInLogoIcon, SewingPinIcon,} from "@radix-ui/react-icons";
-import {Tooltip, TooltipContent, TooltipProvider, TooltipTrigger,} from "@/components/ui/tooltip";
+import {
+  GitHubLogoIcon,
+  LinkedInLogoIcon,
+  SewingPinIcon,
+} from "@radix-ui/react-icons";
+import {
+  Tooltip,
+  TooltipContent,
+  TooltipProvider,
+  TooltipTrigger,
+} from "@/components/ui/tooltip";
 import DownloadButton from "@/components/atoms/DownloadButton";
-import {MailIcon} from "lucide-react";
+import { MailIcon } from "lucide-react";
 import WordPullUp from "@/components/ui/word-pull-up";
-import {useTranslations} from "next-intl";
-import {Button} from "@/components/ui/button";
-import {FaAngular, FaJava, FaReact, FaVuejs} from "react-icons/fa";
-import {twMerge} from "tailwind-merge";
-import {motion} from "framer-motion";
-import {FadeDown} from "@/components/ui/FadeDown";
+import { useTranslations } from "next-intl";
+import { Button } from "@/components/ui/button";
+import { FaAngular, FaJava, FaReact, FaVuejs } from "react-icons/fa";
+import { twMerge } from "tailwind-merge";
+import { motion } from "framer-motion";
+import { FadeDown } from "@/components/ui/FadeDown";
 import BreathingDot from "@/components/atoms/BreathingDot";
+import { scrollToHTMLElement } from "@/utils/scrollUtils";
 
 /**
  * TODO: Make the more about me button go to about section
@@ -22,7 +32,6 @@ import BreathingDot from "@/components/atoms/BreathingDot";
 
 const TheHero: React.FC = () => {
   const t = useTranslations("thehero");
-
   const socials = [
     {
       label: "LinkedIn",
@@ -41,7 +50,7 @@ const TheHero: React.FC = () => {
       icon: <MailIcon className="w-5 h-5" />,
       link: `mailto:epashaliev${"02"}${"@"}gmail.com`,
       className:
-        "bg-black text-white rounded-lg w-7 h-7 flex justify-center items-center dark:bg-white dark:text-black",
+        "bg-stone-700 text-white rounded-lg w-7 h-7 flex justify-center items-center dark:bg-stone-300 dark:text-black",
     },
   ];
 
@@ -49,9 +58,24 @@ const TheHero: React.FC = () => {
     if (link) window.open(link, "_blank");
   };
 
+  const scrollToAboutMe = () => {
+    scrollToHTMLElement("#aboutme");
+  };
+
+  const MAIN_VARIANTS = {
+    hiddenleft: { opacity: 0, x: -200 },
+    visible: { opacity: 1, x: 0, y: 0 },
+    hiddenright: { opacity: 0, x: 200 },
+  };
+
   return (
     <div className="flex flex-col justify-between divide-y-4 lg:flex-row lg:divide-y-0 lg:divide-x-4 text-stone-700 dark:text-stone-200">
-      <div className="flex flex-col gap-5 py-4 lg:py-0 flex-1 lg:pr-8">
+      <motion.div
+        variants={MAIN_VARIANTS}
+        initial={"hiddenleft"}
+        animate={"visible"}
+        className="flex flex-col gap-5 py-4 lg:py-0 flex-1 lg:pr-8"
+      >
         <div className="flex flex-row justify-between lg:justify-around lg:gap-5">
           <Avatar src="/avatar.jpg" alt="Eyman Pashaliev photo" />
           <div className="space-y-2 text-stone-700 font-playfairDisplay dark:text-stone-200">
@@ -83,9 +107,14 @@ const TheHero: React.FC = () => {
           </div>
           <DownloadButton />
         </div>
-      </div>
+      </motion.div>
 
-      <div className="space-y-5 justify-between flex-col py-4 lg:py-0 lg:flex flex-1 lg:pl-8">
+      <motion.div
+        variants={MAIN_VARIANTS}
+        initial={"hiddenright"}
+        animate={"visible"}
+        className="space-y-5 justify-between flex-col py-4 lg:py-0 lg:flex flex-1 lg:pl-8"
+      >
         <div className="space-y-4 text-stone-700 font-playfairDisplay dark:text-stone-200">
           <FadeDown text={t("aboutme")} />
           <p className="tracking-wider font-medium">{t("aboutmedesc")}</p>
@@ -94,9 +123,11 @@ const TheHero: React.FC = () => {
           <div className="text-xs">
             <TechIcons />
           </div>
-          <Button className="w-fit px-2 md:px-4">{t("aboutbtn")}</Button>
+          <Button className="w-fit px-2 md:px-4" onClick={scrollToAboutMe}>
+            {t("aboutbtn")}
+          </Button>
         </div>
-      </div>
+      </motion.div>
     </div>
   );
 };
@@ -109,6 +140,15 @@ interface SocialProps {
   className?: string;
 }
 
+/**
+ * List of social icons showed in the hero
+ * @param children
+ * @param link
+ * @param handleClick
+ * @param label
+ * @param className
+ * @constructor
+ */
 const SocialIcon: React.FC<SocialProps> = ({
   children,
   link,
@@ -133,6 +173,10 @@ const SocialIcon: React.FC<SocialProps> = ({
   );
 };
 
+/**
+ * List of the technologies I use
+ * @constructor
+ */
 const TechIcons: React.FC = () => {
   const tech = [
     { name: "Angular", icon: <FaAngular /> },
@@ -159,6 +203,11 @@ const TechIcons: React.FC = () => {
   );
 };
 
+/**
+ * Sets if I'm currently looking for work or not.
+ * @param status
+ * @constructor
+ */
 const WorkStatus: React.FC<{ status: "open" | "closed" }> = ({ status }) => {
   const t = useTranslations("thehero");
   const message = status === "open" ? t("opentowork") : t("working");

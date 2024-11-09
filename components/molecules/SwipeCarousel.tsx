@@ -4,7 +4,7 @@ import { motion, useMotionValue } from "framer-motion";
 
 const ONE_SECOND = 1000;
 const AUTO_DELAY = ONE_SECOND * 10;
-const DRAG_BUFFER = 50;
+const DRAG_BUFFER = 25;
 
 const SPRING_OPTIONS = {
   type: "spring",

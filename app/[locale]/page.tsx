@@ -11,37 +11,37 @@ export default async function Home() {
     <div className="xl:flex justify-center pb-32">
       <div className="px-6 md:px-24 lg:px-28 xl:max-w-[1100px] flex flex-col gap-20">
         <section
-          id="home"
-          className="h-screen flex flex-col justify-center"
+            id="home"
+            className="h-screen flex flex-col justify-center py-5 md:py-10"
         >
-          <TheHero />
+          <TheHero/>
         </section>
         <section
-          id="experience-studies"
-          className="flex flex-col"
+            id="aboutme"
+            className="flex flex-col justify-center py-5 md:py-10"
         >
-          <TheExperience />
+          <TheAbout/>
         </section>
         <section
-          id="projects"
-          className="flex flex-col justify-center"
+            id="experience-studies"
+            className="flex flex-col"
         >
-          <TheProjects />
+          <TheExperience/>
         </section>
         <section
-          id="certifications"
-          className="flex flex-col justify-center"
+            id="projects"
+            className="flex flex-col justify-center py-5 md:py-10"
         >
-          <TheCertifications />
+          <TheProjects/>
         </section>
         <section
-          id="aboutme"
-          className="flex flex-col justify-center"
+            id="certifications"
+            className="flex flex-col justify-center py-5 md:py-10"
         >
-          <TheAbout />
+          <TheCertifications/>
         </section>
-        <section id="contact" className="flex flex-col justify-center">
-          <TheContact />
+        <section id="contact" className="flex flex-col justify-center py-5 md:py-10">
+          <TheContact/>
         </section>
       </div>
     </div>

@@ -7,10 +7,11 @@
     "menu": "Menu",
     "links": {
       "home": "Home",
+      "about": "About me",
       "experience": "Experience & Studies",
-      "stack": "Stack",
       "projects": "Projects",
-      "contact": "Contact"
+      "certifications": "Certifications",
+      "contact": "Contact me"
     }
   },
   "thehero": {

@@ -4,6 +4,7 @@ import Cursor from "@/components/atoms/Cursor";
 import Position from "@/interfaces/Position";
 import NavbarTabs from "@/data/NavbarTabs";
 import {usePathname, useRouter} from "next/navigation";
+import {scrollToHTMLElement} from "@/utils/scrollUtils";
 
 /**
  * Contains all the Tabs with the links
@@ -64,12 +65,8 @@ const Tab: React.FC<TabProps> = ({ label, link, setPosition }) => {
     if (link.startsWith("#")) {
       e.preventDefault();
       if (pathname === "/en" || pathname === "/es") {
-        const targetElement = document.querySelector(link);
-        if (!targetElement) return;
-        console.log("homepage");
-        targetElement.scrollIntoView({ behavior: "smooth" });
+        scrollToHTMLElement(link);
       } else {
-        console.log("other page");
         router.push(`/${link}`);
       }
     }

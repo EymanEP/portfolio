@@ -178,7 +178,7 @@ const ModalContent: FC<{
             {cert.technologies.map((tech, i) => (
               <span
                 key={i}
-                className="text-sm tracking-tighter px-2 bg-indigo-200 text-stone-800 dark:bg-indigo-400 dark:text-stone-800 rounded-lg"
+                className="text-sm tracking-tighter px-2 bg-blue-200 text-stone-800 dark:bg-blue-400 dark:text-stone-800 rounded-lg"
               >
                 {tech}
               </span>

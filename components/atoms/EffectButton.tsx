@@ -3,7 +3,7 @@
 import classNames from "classnames";
 import {useRouter} from "next/navigation";
 import {AnimatePresence, motion} from "framer-motion";
-import React from "react";
+import React, {useEffect} from "react";
 import {twMerge} from "tailwind-merge";
 import useIsMobile from "@/helpers/useIsMobile";
 
@@ -38,8 +38,13 @@ const EffectButton: React.FC<ButtonProps> = ({
 }) => {
   const router = useRouter();
   const [isHover, setIsHover] = React.useState(false);
-  const [isAnimating, setIsAnimating] = React.useState(false);
   const isMobile = useIsMobile();
+
+  useEffect(() => {
+    if (isHover && isMobile) {
+      setTimeout(() => setIsHover(false), 500);
+    }
+  }, [isHover, isMobile]);
 
   const sizeStyles = {
     small: "px-2 py-1 text-sm",
@@ -49,11 +54,24 @@ const EffectButton: React.FC<ButtonProps> = ({
   };
 
   const colorStyles = {
-    contrast:
-      "bg-black text-white border-black dark:border-stone-600 dark:bg-stone-800 hover:text-black",
-    blue: "bg-blue-700 text-white border-blue-500 hover:text-blue-700",
-    red: "bg-red-700 text-white border-red-500 hover:text-red-700",
-    stone: "bg-stone-700 text-stone-200 border-stone-400 hover:text-stone-700",
+    contrast: "bg-black border-black dark:border-stone-600 dark:bg-stone-800",
+    blue: "bg-blue-700 border-blue-500",
+    red: "bg-red-700 border-red-500",
+    stone: "bg-stone-700 text-stone-200 border-stone-400",
+  };
+
+  const textColors = {
+    contrast: "text-white",
+    blue: "text-white",
+    red: "text-white",
+    stone: "text-stone-200",
+  };
+
+  const hoverTextColors = {
+    contrast: "text-black",
+    blue: "text-blue-700",
+    red: "text-red-700",
+    stone: "text-stone-700",
   };
 
   const roundedStyles = {
@@ -99,15 +117,12 @@ const EffectButton: React.FC<ButtonProps> = ({
     visible: {
       scaleX: 1,
       scaleY: 1,
-      transition: { duration: 0.3, ease: "easeOut" },
+      transition: { duration: 0.3, ease: "easeInOut" },
     },
   };
 
   const handleClick = () => {
-    if (isMobile) {
-      setIsAnimating(true);
-      setTimeout(() => setIsAnimating(false), 500);
-    }
+    if (isMobile) setIsHover(true);
 
     if (cta) {
       setTimeout(() => {
@@ -123,14 +138,22 @@ const EffectButton: React.FC<ButtonProps> = ({
       disabled={disabled}
       className={buttonClasses}
       onClick={handleClick}
-      onMouseEnter={() => setIsHover(true)}
-      onMouseLeave={() => setIsHover(false)}
+      onMouseEnter={() => !isMobile && setIsHover(true)}
+      onMouseLeave={() => !isMobile && setIsHover(false)}
       whileTap={{ scale: 0.8 }}
       transition={{ type: "spring", stiffness: 400, damping: 17 }}
     >
-      <div className="relative z-20">{children}</div>
+      <div
+        className={twMerge(
+          "relative z-20",
+          textColors[color],
+          isHover && hoverTextColors[color],
+        )}
+      >
+        {children}
+      </div>
       <AnimatePresence>
-        {isHover || (isMobile && isAnimating) ? (
+        {isHover ? (
           <motion.div
             className={bgDivClasses}
             variants={effectVariants}
