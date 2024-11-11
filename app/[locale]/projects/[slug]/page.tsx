@@ -37,7 +37,7 @@ export default async function Page({
           text={project!.title}
         />
         <p className="bg-blue-200 w-fit px-2 rounded-full text-sm font-geistVF tracking-tighter dark:bg-blue-400 dark:text-black">
-          Type: {project?.type}
+          {project?.type}
         </p>
         {paragraphs!.map((p, index) => (
           <p

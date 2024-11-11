@@ -35,6 +35,13 @@ const TheProjects: FC = () => {
           <Card index={index} key={index} project={project} />
         ))}
       </motion.div>
+      <Description sentence={t("seemoreprojects")} />
+      <Button
+        className="w-fit"
+        onClick={() => window.open("https://www.github.com/EymanEP", "_blank")}
+      >
+        <FaGithub /> Github
+      </Button>
     </div>
   );
 };

@@ -36,8 +36,60 @@ const geistMono = localFont({
 });
 
 export const metadata: Metadata = {
-  title: "Portfolio",
-  description: "Eyman Pashaliev's Portfolio",
+  title: "Eyman - Web developer",
+  description:
+    "Portfolio of Eyman Pashaliev, a web developer specializing in frontend with tools like Angular, React and Vue, and backend like Spring Boot and Java.",
+  keywords: [
+    "Portfolio",
+    "Eyman",
+    "Pashaliev",
+    "Web developer",
+    "Frontend",
+    "Backend",
+    "React",
+    "Vue",
+    "Angular",
+    "Next.js",
+    "Tailwind",
+    "Java",
+    "Spring Boot",
+    "Javascript",
+    "Typescript",
+  ],
+  authors: [
+    { name: "Eyman Pashaliev", url: "https://www.eyman-pashaliev.dev" },
+  ],
+  creator: "Eyman Pashaliev",
+  openGraph: {
+    title: "Eyman - Web Developer",
+    description:
+      "Explore Eyman Pashaliev's portfolio of web development project and skills.",
+    url: "https://www.eyman-pashaliev.dev",
+    siteName: "Eyman - Web Developer",
+    images: [
+      {
+        url: "/favicon/web-app-manifest-512x512.png",
+        width: 512,
+        height: 512,
+        alt: "Eyman - Web Developer",
+      },
+    ],
+    locale: "en",
+    type: "website",
+  },
+  icons: {
+    icon: "/favicon.ico",
+    shortcut: "/favicon.ico",
+    apple: "/apple-touch-icon.png",
+  },
+  robots: {
+    index: true,
+    follow: true,
+    googleBot: {
+      index: true,
+      follow: true,
+    },
+  },
 };
 
 interface Props {

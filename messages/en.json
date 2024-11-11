@@ -35,7 +35,8 @@
     "goback": "Go back",
     "seecode": "See the code",
     "seedeployment": "See the deployed page",
-    "seeproject": "See the project"
+    "seeproject": "See the project",
+    "seemoreprojects": "You can see more of my projects in my github accounts"
   },
   "thecertifications": {
     "title": "Certifications",
@@ -49,7 +50,7 @@
   },
   "thecontact": {
     "title": "Contact me",
-    "description": "If you want to contact me you can fill the form below and I'll make sure to respond when I get the chance. Or you cant send me directly an email to epashaliev02@gmail.com",
+    "description": "If you want to contact me you can fill the form below and I'll make sure to respond when I get the chance. Or you can send me directly an email to epashaliev02@gmail.com",
     "form": {
       "required": "Required",
       "name": "Your name",

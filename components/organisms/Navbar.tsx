@@ -1,6 +1,5 @@
 "use client";
 
-import EffectButton from "@/components/atoms/EffectButton";
 import React from "react";
 import ThemeButton from "@/components/molecules/ThemeButton";
 import LanguageSelect from "@/components/molecules/LanguageSelect";
@@ -9,6 +8,7 @@ import useIsMobile from "@/helpers/useIsMobile";
 import SideBar from "@/components/molecules/SideBar";
 import SideBarButton from "@/components/atoms/SideBarButton";
 import { motion, useMotionValueEvent, useScroll } from "framer-motion";
+import EPLogo from "@/components/ui/EPLogo";
 
 const Navbar: React.FC = () => {
   const [sideBar, setSideBar] = React.useState(false);
@@ -37,7 +37,9 @@ const Navbar: React.FC = () => {
         animate={hidden ? "hidden" : "visible"}
         transition={{ duration: 0.3, ease: "easeInOut" }}
       >
-        <EffectButton>EP</EffectButton>
+        <span className="scale-50">
+          <EPLogo className="fill-black dark:fill-white" />
+        </span>
         {!isMobile && (
           <div className="p-0.5 self-center justify-center lg:p-1 rounded-full hidden border-2 border-black dark:border-stone-700 md:block">
             <SlideTabs />
