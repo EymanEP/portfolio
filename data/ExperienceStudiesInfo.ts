@@ -83,7 +83,7 @@ const ExperienceStudiesInfo: Info[] = [
           "Ubuntu Server и Windows Server с Active Directory \n" +
           "Изследвания и развитие на вътрешни системи и приложения",
     },
-    imgSrc: "/logos/francoespañolas.png",
+    imgSrc: "/logos/bodegas-franco-espanolas.jpg",
   },
   {
     id: 10,
