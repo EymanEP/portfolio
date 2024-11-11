@@ -24,6 +24,7 @@ import { motion } from "framer-motion";
 import { FadeDown } from "@/components/ui/FadeDown";
 import BreathingDot from "@/components/atoms/BreathingDot";
 import { scrollToHTMLElement } from "@/utils/scrollUtils";
+import EPLogo from "@/components/ui/EPLogo";
 
 /**
  * TODO: Make the more about me button go to about section
