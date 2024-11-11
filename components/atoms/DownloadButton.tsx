@@ -9,7 +9,9 @@ export default function DownloadButton() {
     const pdfUrl: string =
       locale === "es"
         ? "documents/CV_Eyman-Pashaliev.pdf"
-        : "documents/CV_EymanPashaliev_ENG.pdf";
+        : locale === "es"
+          ? "documents/CV_EymanPashaliev_ENG.pdf"
+          : "documents/CV_Eyman-Pashaliev-BG.pdf";
 
     window.open(pdfUrl, "_blank");
   };
