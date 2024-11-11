@@ -25,7 +25,7 @@ const SideBar: React.FC<SideBarProps> = ({ sideBar = false, setSideBar }) => {
 
     if (link.startsWith("#")) {
       e.preventDefault();
-      if (pathname === "/en" || pathname === "/es") {
+      if (pathname === "/en" || pathname === "/es" || pathname === "/bg") {
         scrollToHTMLElement(link);
       } else {
         router.push(`/${link}`);

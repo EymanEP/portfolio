@@ -7,6 +7,7 @@ import { useLocale } from "next-intl";
 const languages = [
   { label: "EN", value: "en" },
   { label: "ES", value: "es" },
+  { label: "BG", value: "bg" },
 ];
 
 const LanguageSelect = () => {
@@ -19,7 +20,7 @@ const LanguageSelect = () => {
   const selectLanguage = (lang: { label: string; value: string }) => {
     setSelected(lang);
 
-    const currentPath = window.location.pathname.replace(/^\/(en|es)/, "");
+    const currentPath = window.location.pathname.replace(/^\/(en|es|bg)/, "");
     router.push(`/${lang.value}${currentPath}`);
   };
 
