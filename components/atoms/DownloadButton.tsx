@@ -9,7 +9,7 @@ export default function DownloadButton() {
     const pdfUrl: string =
       locale === "es"
         ? "documents/CV_Eyman-Pashaliev.pdf"
-        : locale === "es"
+        : locale === "en"
           ? "documents/CV_EymanPashaliev_ENG.pdf"
           : "documents/CV_Eyman-Pashaliev-BG.pdf";
 
