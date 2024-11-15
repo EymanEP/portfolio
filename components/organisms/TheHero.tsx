@@ -25,11 +25,6 @@ import { FadeDown } from "@/components/ui/FadeDown";
 import BreathingDot from "@/components/atoms/BreathingDot";
 import { scrollToHTMLElement } from "@/utils/scrollUtils";
 
-/**
- * TODO: Make the more about me button go to about section
- * @constructor
- */
-
 const TheHero: React.FC = () => {
   const t = useTranslations("thehero");
   const socials = [
