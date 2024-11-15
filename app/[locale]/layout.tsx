@@ -38,21 +38,7 @@ export const metadata: Metadata = {
   description:
     "Portfolio of Eyman Pashaliev, a web developer specializing in frontend with tools like Angular, React and Vue, and backend like Spring Boot and Java.",
   keywords: [
-    "Portfolio",
-    "Eyman",
-    "Pashaliev",
-    "Web developer",
-    "Frontend",
-    "Backend",
-    "React",
-    "Vue",
-    "Angular",
-    "Next.js",
-    "Tailwind",
-    "Java",
-    "Spring Boot",
-    "Javascript",
-    "Typescript",
+    "Web Development Portfolio, Eyman Pashaliev, Full-Stack Developer, Freelance Web Developer, Frontend Frameworks, Backend Technologies, React Projects, Vue Projects, Angular Expertise, Next.js Developer, Tailwind CSS, Java Backend, Spring Boot, Progressive Web Apps, JavaScript Development, TypeScript, Microservices.",
   ],
   authors: [
     { name: "Eyman Pashaliev", url: "https://www.eyman-pashaliev.dev" },
@@ -63,17 +49,24 @@ export const metadata: Metadata = {
     description:
       "Explore Eyman Pashaliev's portfolio of web development project and skills.",
     url: "https://www.eyman-pashaliev.dev",
-    siteName: "Eyman - Web Developer",
+    siteName: "Eyman Pashaliev's Portfolio",
     images: [
       {
-        url: "/favicon/web-app-manifest-512x512.png",
-        width: 512,
-        height: 512,
+        url: "/web-app-manifest-192x192.png",
+        width: 192,
+        height: 192,
         alt: "Eyman - Web Developer",
       },
     ],
     locale: "en",
     type: "website",
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Eyman - Web Developer",
+    description:
+        "Explore Eyman Pashaliev's portfolio of web development projects and skills.",
+    images: "/web-app-manifest-192x192.png",
   },
   icons: {
     icon: "/favicon.ico",

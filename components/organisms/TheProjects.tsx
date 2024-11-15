@@ -37,7 +37,7 @@ const TheProjects: FC = () => {
       </motion.div>
       <Description sentence={t("seemoreprojects")} />
       <Button
-        className="w-fit"
+        className="w-fit px-6 font-geistMono"
         onClick={() => window.open("https://www.github.com/EymanEP", "_blank")}
       >
         <FaGithub /> Github

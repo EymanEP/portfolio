@@ -118,7 +118,7 @@ const TheHero: React.FC = () => {
           <div className="text-xs">
             <TechIcons />
           </div>
-          <Button className="w-fit px-2 md:px-4" onClick={scrollToAboutMe}>
+          <Button className="w-fit px-6 font-geistMono" onClick={scrollToAboutMe}>
             {t("aboutbtn")}
           </Button>
         </div>
