@@ -52,7 +52,7 @@ export const metadata: Metadata = {
     siteName: "Eyman Pashaliev's Portfolio",
     images: [
       {
-        url: "/web-app-manifest-192x192.png",
+        url: "/favicon/web-app-manifest-192x192.png",
         width: 192,
         height: 192,
         alt: "Eyman - Web Developer",
@@ -66,12 +66,12 @@ export const metadata: Metadata = {
     title: "Eyman - Web Developer",
     description:
         "Explore Eyman Pashaliev's portfolio of web development projects and skills.",
-    images: "/web-app-manifest-192x192.png",
+    images: "/favicon/web-app-manifest-192x192.png",
   },
   icons: {
     icon: "/favicon.ico",
     shortcut: "/favicon.ico",
-    apple: "/apple-touch-icon.png",
+    apple: "/favicon/apple-touch-icon.png",
   },
   robots: {
     index: true,
