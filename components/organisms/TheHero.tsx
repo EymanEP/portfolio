@@ -83,7 +83,7 @@ const TheHero: React.FC = () => {
               <SewingPinIcon />
               {t("location")}
             </p>
-            <WorkStatus status="open" />
+            <WorkStatus status="closed" />
           </div>
         </div>
         <div className="flex flex-row justify-between font-geistMono lg:justify-center lg:self-end lg:pr-10 lg:gap-5">
@@ -118,7 +118,10 @@ const TheHero: React.FC = () => {
           <div className="text-xs">
             <TechIcons />
           </div>
-          <Button className="w-fit px-6 font-geistMono" onClick={scrollToAboutMe}>
+          <Button
+            className="w-fit px-6 font-geistMono"
+            onClick={scrollToAboutMe}
+          >
             {t("aboutbtn")}
           </Button>
         </div>
@@ -205,14 +208,14 @@ const TechIcons: React.FC = () => {
  */
 const WorkStatus: React.FC<{ status: "open" | "closed" }> = ({ status }) => {
   const t = useTranslations("thehero");
-  const message = status === "open" ? t("opentowork") : t("working");
+  const message = status === "open" ? t("opentowork") : t('working');
   const statusClasses = {
     open: "bg-green-200 text-green-800 dark:bg-green-800 dark:text-green-200",
     closed: "bg-amber-200 text-amber-800 dark:bg-amber-800 dark:text-amber-200",
   };
   const classes = twMerge(
     statusClasses[status],
-    "font-geistVF tracking-tighter px-4 rounded-xl w-fit flex flex-row items-center gap-2",
+    "font-geistVF tracking-tighter px-4 rounded-xl w-fit flex flex-row items-center gap-2"
   );
   const dotClasses =
     status === "open"
@@ -220,7 +223,7 @@ const WorkStatus: React.FC<{ status: "open" | "closed" }> = ({ status }) => {
       : "bg-amber-300 border-amber-800";
   return (
     <div className={classes}>
-      <BreathingDot className={dotClasses} />
+      {status === "open" && <BreathingDot className={dotClasses} />}
       <p className="">{message}</p>
     </div>
   );
