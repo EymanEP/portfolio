@@ -42,7 +42,7 @@ export default function TheAbout() {
               {paragraph}
             </motion.p>
           ))}
-          <Button onClick={() => scrollToHTMLElement("#contact")}>
+          <Button className="w-fit px-6 font-geistMono" onClick={() => scrollToHTMLElement("#contact")}>
             {t("contact")}
           </Button>
         </div>

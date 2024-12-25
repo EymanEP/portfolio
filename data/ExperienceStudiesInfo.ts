@@ -11,9 +11,9 @@ const ExperienceStudiesInfo: Info[] = [
     },
     place: "Globant Gut",
     date: {
-      es: "Enero 2024 - Junio 2024",
-      en: "January 2024 - June 2024",
-      bg: "Януари 2024 - Юни 2024",
+      es: "Diciembre 2024 - Actualmente",
+      en: "December 2024 - Currently",
+      bg: "Декември 2024 - В момента",
     },
     description: {
       es:
@@ -38,6 +38,33 @@ const ExperienceStudiesInfo: Info[] = [
     },
     place: "Globant Gut",
     date: {
+      es: "Enero 2024 - Junio 2024",
+      en: "January 2024 - June 2024",
+      bg: "Януари 2024 - Юни 2024",
+    },
+    description: {
+      es:
+        "Desarrollo de páginas para clientes utilizando Nuxt y Tailwind \n" +
+        "Trabajo en proyectos internos donde aprendí React, NestJS, Supabase y Astro entre otras",
+      en:
+        "Web development for clients using Nuxt mainly and Tailwind \n" +
+        "Internal projects with React and learning NestJs, Supabase and other technologies",
+      bg:
+        "Уеб разработка за клиенти, използвайки основно Nuxt и Tailwind \n" +
+        "Проекти за вътрешно използване с React и учене на NestJS, Supabase и други технологии",
+    },
+    imgSrc: "/logos/globant.png",
+  },
+  {
+    id: 3,
+    type: "experience",
+    title: {
+      en: "Frontend Developer",
+      es: "Desarrollador Frontend",
+      bg: "Фронтенд разработчик",
+    },
+    place: "Globant Gut",
+    date: {
       es: "Marzo 2023 - Junio 2023",
       en: "March 2023 - June 2023",
       bg: "Март 2023 - Юни 2023",
@@ -50,13 +77,13 @@ const ExperienceStudiesInfo: Info[] = [
         "Internal web apps using Astro, HTML, JS and Tailwind\n" +
         "Client projects with Nuxt/Vue",
       bg:
-          "Вътрешни уеб приложения с Astro, HTML, JavaScript и Tailwind \n" +
-          "Проекти за клиенти с Nuxt/Vue",
+        "Вътрешни уеб приложения с Astro, HTML, JavaScript и Tailwind \n" +
+        "Проекти за клиенти с Nuxt/Vue",
     },
     imgSrc: "/logos/globant.png",
   },
   {
-    id: 3,
+    id: 4,
     type: "experience",
     title: {
       en: "R+D Technician",
@@ -79,9 +106,9 @@ const ExperienceStudiesInfo: Info[] = [
         "Ubuntu Server and Windows Server using Active Directory \n" +
         "Research and development of internal systems and applications",
       bg:
-          "Управление на сървъри и техническа поддръжка \n" +
-          "Ubuntu Server и Windows Server с Active Directory \n" +
-          "Изследвания и развитие на вътрешни системи и приложения",
+        "Управление на сървъри и техническа поддръжка \n" +
+        "Ubuntu Server и Windows Server с Active Directory \n" +
+        "Изследвания и развитие на вътрешни системи и приложения",
     },
     imgSrc: "/logos/bodegas-franco-espanolas.jpg",
   },
@@ -115,12 +142,12 @@ const ExperienceStudiesInfo: Info[] = [
         "Programación de plugins y despliegue de Odoo con Python\n" +
         "Uso y despliegue con Docker y Linux",
       bg:
-          "Програмиране с Java\n" +
-          "Фронтенд разработка с Angular\n" +
-          "Бекенд разработка с Hibernate и SpringBoot\n" +
-          "Разработка на мобилни приложения с Kotlin и Jetpack Compose\n" +
-          "Програмиране на плъгини и деплойване на Odoo с Python\n" +
-          "Използване и деплойване с Docker и Linux",
+        "Програмиране с Java\n" +
+        "Фронтенд разработка с Angular\n" +
+        "Бекенд разработка с Hibernate и SpringBoot\n" +
+        "Разработка на мобилни приложения с Kotlin и Jetpack Compose\n" +
+        "Програмиране на плъгини и деплойване на Odoo с Python\n" +
+        "Използване и деплойване с Docker и Linux",
     },
     imgSrc: "/logos/jesuitas.png",
   },
